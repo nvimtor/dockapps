@@ -76,13 +76,13 @@ AC_ARG_ENABLE(crypto, AC_HELP_STRING([ --disable-crypto ], [ disable gnutls/gcry
 
 GNUTLS_MAN_STATUS="This copy of WMBiff was not compiled with GNUTLS."
 if test "$gnutls" = "ok"; then
- PKG_CHECK_MODULES([LIBGNUTLS], [gnutls > 2.2.0], [LIBS="$LIBS $LIBGNUTLS_LIBS"
-                          CFLAGS="$CFLAGS $LIBGNUTLS_CFLAGS"
-                         CPPFLAGS="$CPPFLAGS $LIBGNUTLS_CFLAGS"
-                         GNUTLS_COMMON_O="gnutls-common.o"
-                         GNUTLS_MAN_STATUS="This copy of WMBiff was compiled with GNUTLS."
-                         AC_CHECK_HEADERS(gnutls/gnutls.h) ],
-                         [ echo GNUTLS can be found at ftp://gnutls.hellug.gr/pub/gnutls ])
+ PKG_CHECK_MODULES([LIBGNUTLS], [gnutls > 2.2.0],
+                   [
+                    AC_DEFINE([USE_GNUTLS], [1], [gnutls is installed])
+                    GNUTLS_COMMON_O='gnutls-common.$(OBJEXT)'
+                    GNUTLS_MAN_STATUS="This copy of WMBiff was compiled with GNUTLS."
+                   ],
+                   [echo GNUTLS can be found at ftp://gnutls.hellug.gr/pub/gnutls])
 else
  AC_MSG_RESULT(GNUTLS support requires libz.a and libgdbm.a, so will be disabled)
 fi

@@ -19,8 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#ifdef HAVE_GNUTLS_GNUTLS_H
-#define USE_GNUTLS
+#ifdef USE_GNUTLS
 #include <gnutls/gnutls.h>
 #include <gnutls/x509.h>
 #include <sys/stat.h>

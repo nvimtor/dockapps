@@ -231,7 +231,7 @@ int pop3Create(Pop3 *pc, const char *str)
 	}
 
 	if (strncmp("pop3s:", str, 6) == 0) {
-#ifdef HAVE_GNUTLS_GNUTLS_H
+#ifdef USE_GNUTLS
 		PCU.dossl = 1;
 #else
 		printf("This copy of wmbiff was not compiled with gnutls;\n"

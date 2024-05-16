@@ -1,4 +1,4 @@
-AM_CFLAGS = $(LIBGCRYPT_CFLAGS)
+AM_CFLAGS = $(LIBGCRYPT_CFLAGS) $(LIBGNUTLS_CFLAGS)
 
 bin_PROGRAMS = wmbiff
 
@@ -25,9 +25,10 @@ EXTRA_wmbiff_SOURCES = \
 	gnutls-common.c \
 	gnutls-common.h
 wmbiff_LDADD = \
+	@GNUTLS_COMMON_O@ \
 	-L../wmgeneral -lwmgeneral \
 	$(LIBGCRYPT_LIBS) \
-	@GNUTLS_COMMON_O@
+	$(LIBGNUTLS_LIBS)
 wmbiff_DEPENDENCIES = \
 	../wmgeneral/libwmgeneral.a \
 	Makefile \
@@ -53,12 +54,15 @@ EXTRA_test_wmbiff_SOURCES = \
 	gnutls-common.c \
 	gnutls-common.h
 test_wmbiff_LDADD = \
-	$(LIBGCRYPT_LIBS)
+	$(LIBGCRYPT_LIBS) \
+	$(LIBGNUTLS_LIBS)
 
 test_tlscomm_SOURCES = \
 	test_tlscomm.c \
 	tlsComm.c \
 	tlsComm.h
+test_tlscomm_LDADD = \
+	$(LIBGNUTLS_LIBS)
 
 skindir = $(datadir)/wmbiff/skins
 skin_DATA = \
