@@ -28,9 +28,9 @@
 #include <dmalloc.h>
 #endif
 
-#include "tlsComm.h"
-
 #include "Client.h"				/* debugging messages */
+#include "tlsComm.h"
+#include "wmbiff.h"
 
 /* if non-null, set to a file for certificate verification */
 extern const char *certificate_filename;
@@ -99,9 +99,6 @@ void tlscomm_close(struct connection_state *scs)
 	scs->name = NULL;
 	free(scs);
 }
-
-extern int x_socket(void);
-extern void ProcessPendingEvents(void);
 
 /* this avoids blocking without using non-blocking i/o */
 static int wait_for_it(int sd, int timeoutseconds)

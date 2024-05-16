@@ -1,17 +1,27 @@
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include <tlsComm.h>
+#ifdef USE_GNUTLS
+#include <gnutls/gnutls.h>
+#endif
+
+#include "Client.h"
+#include "tlsComm.h"
+#include "wmbiff.h"
 
 int debug_default = 2;
 int SkipCertificateCheck = 0;
 const char *certificate_filename = NULL;
 const char *tls = "NORMAL";
 
-int exists(const char *filename __attribute__ ((unused)))
+int exists(UNUSED(const char *filename))
 {
 	return (0);
 }
@@ -25,10 +35,13 @@ int x_socket(void)
 	return (0);
 }
 
-int print_info(void *state __attribute__((unused)))
+#ifdef USE_GNUTLS
+#include "gnutls-common.h"
+int print_info(UNUSED(gnutls_session_t state), UNUSED(const char* hostname))
 {
 	return (0);
 }
+#endif
 
 int Relax = 1;
 

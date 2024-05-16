@@ -34,6 +34,7 @@
 #include "Client.h"
 #include "charutil.h"
 #include "MessageList.h"
+#include "wmbiff.h"
 
 #ifdef USE_DMALLOC
 #include <dmalloc.h>
@@ -1014,11 +1015,11 @@ static void restart_wmbiff(int sig
 		fprintf(stderr, "Unable to restart wmbiff: missing restart arguments (NULL)!\n");
 }
 
-extern int x_socket(void)
+int x_socket(void)
 {
 	return ConnectionNumber(display);
 }
-extern void ProcessPendingEvents(void)
+void ProcessPendingEvents(void)
 {
 	static int but_pressed_region = -1;	/* static so click can be determined */
 	int but_released_region = -1;

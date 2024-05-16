@@ -4,6 +4,7 @@ bin_PROGRAMS = wmbiff
 
 wmbiff_SOURCES = \
 	wmbiff.c \
+	wmbiff.h \
 	socket.c \
 	Pop3Client.c \
 	mboxClient.c \
@@ -49,9 +50,9 @@ test_wmbiff_SOURCES = \
 	Pop3Client.c \
 	tlsComm.c \
 	tlsComm.h \
+	wmbiff.h \
 	socket.c
 EXTRA_test_wmbiff_SOURCES = \
-	gnutls-common.c \
 	gnutls-common.h
 test_wmbiff_LDADD = \
 	$(LIBGCRYPT_LIBS) \
@@ -59,8 +60,12 @@ test_wmbiff_LDADD = \
 
 test_tlscomm_SOURCES = \
 	test_tlscomm.c \
+	Client.h \
 	tlsComm.c \
-	tlsComm.h
+	tlsComm.h \
+	wmbiff.h
+EXTRA_test_tlscomm_SOURCES = \
+	gnutls-common.h
 test_tlscomm_LDADD = \
 	$(LIBGNUTLS_LIBS)
 

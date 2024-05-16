@@ -17,11 +17,15 @@
 #endif
 
 #include <unistd.h>
+#ifdef USE_GNUTLS
+#include <gnutls/gnutls.h>
+#endif
 
 #include "Client.h"
 #include "passwordMgr.h"
 #include "tlsComm.h"
 #include "charutil.h"
+#include "wmbiff.h"
 
 void ProcessPendingEvents(void)
 {
@@ -393,10 +397,13 @@ int test_sock_connect(void)
 }
 
 
-int print_info(UNUSED(void *state))
+#ifdef USE_GNUTLS
+#include "gnutls-common.h"
+int print_info(UNUSED(gnutls_session_t state), UNUSED(const char* hostname))
 {
 	return (0);
 }
+#endif
 const char *certificate_filename = NULL;
 const char *tls = "NORMAL";
 int SkipCertificateCheck = 0;
