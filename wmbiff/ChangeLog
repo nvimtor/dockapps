@@ -1,3 +1,43 @@
+2024-05-16  Jeremy Sowden <jeremy@azazel.net>
+
+        * ChangeLog, NEWS, configure.ac: bump to 0.4.37
+
+2024-05-16  Jeremy Sowden <jeremy@azazel.net>
+
+        * wmbiff/Makefile.am: fix generation of XPM's from
+        separate build-directory
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+        * wmbiff/Makefile.am, wmbiff/test_tlscomm.c, wmbiff/test_wmbiff.c,
+	wmbiff/tlsComm.c, wmbiff/wmbiff.c, wmbiff/wmbiff.h:
+	fix `print_info` prototypes in test sources
+
+	They should match the real `print_info` in gnutls-common.c.
+
+	Make sure all stubbed functions are declared in headers and those
+        headers are included where the functions are definitions.
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+        * wmbiff/Makefile.am: `noinst_PROGRAMS` -> `check_PROGRAMS`
+
+	test_wmbiff and test_tlscomm are intended to be run by `make check`.
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+        * configure.ac, wmbiff/Imap4Client.c, wmbiff/Makefile.am:
+	wmbiff/Pop3Client.c, wmbiff/tlsComm.c: update gnutls pkg-config
+        configuration
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+        * configure.ac, wmbiff/Makefile.am: use pkg-config to find libgcrypt
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+        * wmbiff/Makefile.am: improve formatting
+
 2020-04-17  Jeremy Sowden <jeremy@azazel.net>
 
 	* ChangeLog, configure.ac: wmbiff: bump to 0.4.36.
