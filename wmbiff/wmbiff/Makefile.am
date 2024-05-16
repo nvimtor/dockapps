@@ -115,14 +115,14 @@ distclean-local:
 
 # remove colors, then substitute old colors, then repalletize
 # for some reason $< doesn't always work.
-wmbiff-master-contrast.xpm:  wmbiff-master-led.xpm Makefile
-	egrep -v '^"[:%][[:space:]]c #' < wmbiff-master-led.xpm | \
+wmbiff-master-contrast.xpm:  $(srcdir)/wmbiff-master-led.xpm Makefile
+	egrep -v '^"[:%][[:space:]]c #' < $(srcdir)/wmbiff-master-led.xpm | \
 	sed -e 's/:/./g' -e 's/%/$$/g' -e 's/ 15 / 13 /' | \
 	sed -e 's/#\([0-9A-F]\{2\}\)[0-9A-F]\{2\}\([0-9A-F]\{2\}\)[0-9A-F]\{2\}\([0-9A-F]\{2\}\)[0-9A-F]\{2\}/#\1\2\3/'\
 	> $@ || rm $@
 
-wmbiff-classic-master-contrast.xpm:  wmbiff-classic-master-led.xpm Makefile
-	egrep -v '^"[:%][[:space:]]c #' < wmbiff-classic-master-led.xpm | \
+wmbiff-classic-master-contrast.xpm:  $(srcdir)/wmbiff-classic-master-led.xpm Makefile
+	egrep -v '^"[:%][[:space:]]c #' < $(srcdir)/wmbiff-classic-master-led.xpm | \
 	sed -e 's/:/./g' -e 's/%/$$/g' -e 's/ 15 / 13 /' | \
 	sed -e 's/#\([0-9A-F]\{2\}\)[0-9A-F]\{2\}\([0-9A-F]\{2\}\)[0-9A-F]\{2\}\([0-9A-F]\{2\}\)[0-9A-F]\{2\}/#\1\2\3/'\
 	> $@ || rm $@
