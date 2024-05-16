@@ -1,3 +1,5 @@
+AM_CFLAGS = $(LIBGCRYPT_CFLAGS)
+
 bin_PROGRAMS = wmbiff
 
 wmbiff_SOURCES = \
@@ -24,7 +26,7 @@ EXTRA_wmbiff_SOURCES = \
 	gnutls-common.h
 wmbiff_LDADD = \
 	-L../wmgeneral -lwmgeneral \
-	@LIBGCRYPT_LIBS@ \
+	$(LIBGCRYPT_LIBS) \
 	@GNUTLS_COMMON_O@
 wmbiff_DEPENDENCIES = \
 	../wmgeneral/libwmgeneral.a \
@@ -51,7 +53,7 @@ EXTRA_test_wmbiff_SOURCES = \
 	gnutls-common.c \
 	gnutls-common.h
 test_wmbiff_LDADD = \
-	@LIBGCRYPT_LIBS@
+	$(LIBGCRYPT_LIBS)
 
 test_tlscomm_SOURCES = \
 	test_tlscomm.c \

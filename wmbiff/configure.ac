@@ -89,17 +89,17 @@ fi
 
 GCRYPT_MAN_STATUS="This copy of WMBiff was not compiled with gcrypt."
 if test "$gcrypt" = "ok"; then
- AM_PATH_LIBGCRYPT(1.1.90, [CFLAGS="$CFLAGS $LIBGCRYPT_CFLAGS"
-                         CPPFLAGS="$CPPFLAGS $LIBGCRYPT_CFLAGS"
-                         GCRYPT_MAN_STATUS="This copy of WMBiff was compiled with gcrypt."
-                         AC_CHECK_HEADERS(gcrypt.h) ],
-                         [ echo libgcrypt can be found at ftp://ftp.gnupg.org/pub/gcrypt/alpha/libgcrypt/ ]  )
+ PKG_CHECK_MODULES([LIBGCRYPT], [libgcrypt > 1.1.90],
+                   [
+                    AC_DEFINE([HAVE_GCRYPT_H], [1], [libgcrypt is installed])
+                    GCRYPT_MAN_STATUS="This copy of WMBiff was compiled with gcrypt."
+                   ],
+                   [echo libgcrypt can be found at ftp://ftp.gnupg.org/pub/gcrypt/alpha/libgcrypt/])
 else
-        AC_MSG_RESULT(GCRYPT disabled.)
+ AC_MSG_RESULT(GCRYPT disabled.)
 fi;
 
 
-AC_SUBST(LIBGCRYPT_LIBS)
 AC_SUBST(GNUTLS_MAN_STATUS)
 AC_SUBST(GCRYPT_MAN_STATUS)
 AC_SUBST(GNUTLS_COMMON_O)
