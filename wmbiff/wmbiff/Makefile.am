@@ -34,8 +34,8 @@ wmbiff_DEPENDENCIES = \
 	Makefile \
 	@GNUTLS_COMMON_O@
 
-TESTS = test_wmbiff test_tlscomm
-noinst_PROGRAMS = test_wmbiff test_tlscomm
+check_PROGRAMS = test_wmbiff test_tlscomm
+TESTS = $(check_PROGRAMS)
 
 test_wmbiff_SOURCES = \
 	ShellClient.c \
