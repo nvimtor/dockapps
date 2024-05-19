@@ -14,8 +14,3 @@ wmclockmon_cal_SOURCES =   \
 AM_CFLAGS += $(gtk_CFLAGS) $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 
 LDADD = $(gtk_LIBS) $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
-
-INSTALL_PROGRAM = \
-	@INSTALL_PROGRAM@ \
-	@SETGID_FLAGS@ \
-	$(AM_INSTALL_PROGRAM_FLAGS)
