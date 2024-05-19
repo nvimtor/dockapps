@@ -34,10 +34,10 @@ dnl =========
 
 AC_ARG_ENABLE([debug],
               [AS_HELP_STRING([--enable-debug], [turn on debugging [default=no]])])
-if test "$enable_debug" = yes; then
+AS_IF([test "$enable_debug" = yes], [
   debug_CFLAGS="-Wall -g -ansi -pedantic"
   AC_DEFINE([DEBUG], [1], [use debug code])
-fi
+])
 AC_SUBST([debug_CFLAGS])
 
 
@@ -45,17 +45,13 @@ dnl ============
 dnl Check for OS
 dnl ============
 
-case ${host_os} in
-freebsd*)
-  LIBS="$LIBS -lkvm"
-  SETGID_FLAGS="-g kmem -m 2755 -o root"
-  ;;
-linux*|netbsd*|openbsd*|solaris*)
-  ;;
-*)
-  AC_MSG_ERROR([Sorry, ${host_os} is not supported yet])
-  ;;
-esac
+AS_CASE([${host_os}],
+        [freebsd*], [
+          LIBS="$LIBS -lkvm"
+          SETGID_FLAGS="-g kmem -m 2755 -o root"
+        ],
+        [linux*|netbsd*|openbsd*|solaris*], [],
+        [AC_MSG_ERROR([Sorry, ${host_os} is not supported yet])])
 AC_SUBST([SETGID_FLAGS])
 
 dnl Checks for header files.
