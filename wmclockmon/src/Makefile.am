@@ -15,6 +15,8 @@ wmclockmon_SOURCES =   \
 
 CPPFLAGS = @CPPFLAGS@ @DFLAGS@
 
+AM_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\""
+
 INCLUDES = @HEADER_SEARCH_PATH@
 
 wmclockmon_LDADD = @LIBRARY_SEARCH_PATH@ @XLIBS@

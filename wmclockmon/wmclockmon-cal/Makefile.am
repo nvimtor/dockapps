@@ -1,6 +1,6 @@
 bin_PROGRAMS = wmclockmon-cal
 
-wmclockmon_SOURCES =   \
+wmclockmon_cal_SOURCES =   \
 	defines.h \
 	main.c \
 	main.h \

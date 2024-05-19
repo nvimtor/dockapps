@@ -1,6 +1,6 @@
-bin_PROGRAMS = wmclockmon
+bin_PROGRAMS = wmclockmon-config
 
-wmclockmon_SOURCES =   \
+wmclockmon_config_SOURCES =   \
 	actions.c \
 	actions.h \
 	configfile.h \
