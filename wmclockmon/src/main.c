@@ -323,7 +323,7 @@ int main(int argc, char **argv) {
     }
 
     /* Initialize Application */
-    dockapp_open_window(display_name, PACKAGE, SIZE, SIZE, argc, argv);
+    dockapp_open_window(display_name, argv[0], SIZE, SIZE, argc, argv);
     dockapp_set_eventmask(ButtonPressMask);
 
     graphics_init();
@@ -1551,8 +1551,10 @@ static Bool load_cfgfile() {
             i++;
             if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
             if ((line[0] == '#') || (line[0] == 0)) continue;
-            value = strchr (line, '=') + 1;
-            while ((value[0] == ' ') && (value[0] != 0)) value++;
+            value = strchr(line, '=');
+            if (! value) continue;
+            value++;
+            while ((value[0] != 0) && (value[0] == ' ')) value++;
             if (value[0] == 0) continue;
 
             if (strncmp(line, "Backlight", 9) == 0) {
