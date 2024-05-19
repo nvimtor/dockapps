@@ -54,25 +54,16 @@ ignore_wired=no
 
 case ${host_os} in
 linux*)
-  OS=linux
   ignore_buffers=yes
   ignore_cached=yes
   ;;
 freebsd*)
-  OS=freebsd
   ignore_wired=yes
   ignore_cached=yes
   LIBS="$LIBS -lkvm"
   SETGID_FLAGS="-g kmem -m 2755 -o root"
   ;;
-openbsd*)
-  OS=openbsd
-  ;;
-netbsd*)
-  OS=netbsd
-  ;;
-solaris*)
-  OS=solaris
+netbsd*|openbsd*|solaris*)
   ;;
 *)
   echo ""
@@ -82,7 +73,6 @@ solaris*)
   ;;
 esac
 
-AC_SUBST(OS)
 AC_SUBST(SETGID_FLAGS)
 
 if test "$ignore_buffers" = yes; then
