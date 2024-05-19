@@ -19,7 +19,7 @@ AM_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\""
 
 AM_CFLAGS += $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 
-wmclockmon_LDADD = $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
+LDADD = $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
 
 INSTALL_PROGRAM = \
 	@INSTALL_PROGRAM@ \
