@@ -18,6 +18,9 @@ wmclockmon_config_SOURCES =   \
 
 CPPFLAGS = @CPPFLAGS@ @DFLAGS@
 
+AM_CFLAGS = $(gtk_CFLAGS)
+LIBS += $(gtk_LIBS)
+
 INCLUDES = @HEADER_SEARCH_PATH@
 
 wmclockmon_LDADD = @LIBRARY_SEARCH_PATH@ @XLIBS@

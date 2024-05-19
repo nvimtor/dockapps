@@ -28,6 +28,7 @@ AC_ARG_WITH(incs-from,
        [  --with-incs-from        pass compiler flags to look for header files],
        [inc_search_path="$withval $inc_search_path"])
 
+PKG_CHECK_MODULES([gtk], [gtk+-2.0])
 
 dnl ===========================================
 dnl             Stuff that uses X
