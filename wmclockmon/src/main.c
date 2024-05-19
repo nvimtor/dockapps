@@ -630,14 +630,19 @@ static void load_style(const char *stylename) {
         {"Month_PosY",     T_INT,  &style.oposy, &default_style.oposy},
         {NULL,             T_STRING, NULL}
     };
-    char *partsfile   = xstrdup(style.parts_s);
-    char *lettersfile = xstrdup(style.letters_s);
-    char *itimefile   = xstrdup(style.itime_s);
-    char *btimefile   = xstrdup(style.btime_s);
+    char *partsfile;
+    char *lettersfile;
+    char *itimefile;
+    char *btimefile;
     char *filename;
 
     if (! stylename) return;
-    filename = set_filename(stylename, ".mwcs");
+
+    partsfile   = xstrdup(style.parts_s);
+    lettersfile = xstrdup(style.letters_s);
+    itimefile   = xstrdup(style.itime_s);
+    btimefile   = xstrdup(style.btime_s);
+    filename    = set_filename(stylename, ".mwcs");
 
     /* main style */
     load_stylepart(filename, main_style_opts);

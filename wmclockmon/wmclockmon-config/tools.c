@@ -36,8 +36,8 @@ void alrm_add(Alarm **list, const char *value) {
     Alarm *lst = *list;
     int    ok  = TRUE;
     char  *time = NULL, *date = NULL, *ison = NULL, *mesg = NULL, *at;
-    char  *tokstr = xstrdup(value);
-    char  *toksav = tokstr;
+    char  *tokstr;
+    char  *toksav;
 
     if (! value) return;
     if (! lst) {
@@ -53,6 +53,7 @@ void alrm_add(Alarm **list, const char *value) {
         lst->next = xmalloc(sizeof(Alarm));
         lst = lst->next;
     }
+    toksav = tokstr = xstrdup(value);
     at = strchr(value, '@');
     if (at) ison = strtok(tokstr, "@");
     time = strtok(at ? NULL : tokstr, "-.");
