@@ -17,21 +17,6 @@ AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
 
-dnl
-dnl Specify paths to look for libraries and headers
-dnl ===============================================
-AC_ARG_WITH(libs-from,
-       [  --with-libs-from        pass compiler flags to look for libraries],
-       [lib_search_path="$withval $lib_search_path"])
-
-lib_search_path="$lib_search_path -L/usr/local/lib"
-
-AC_ARG_WITH(incs-from,
-       [  --with-incs-from        pass compiler flags to look for header files],
-       [inc_search_path="$withval $inc_search_path"])
-
-inc_search_path="$inc_search_path -I/usr/local/include"
-
 PKG_CHECK_MODULES([gtk], [gtk+-2.0])
 
 dnl ===========================================
@@ -111,16 +96,6 @@ if test "$ignore_wired" = yes; then
   AC_DEFINE(IGNORE_WIRED, 1, [use '--ignore-wired' option])
 fi
 
-
-dnl =============================
-dnl Checks for library functions.
-dnl =============================
-
-LIBRARY_SEARCH_PATH="$lib_search_path"
-HEADER_SEARCH_PATH="$inc_search_path"
-
-AC_SUBST(LIBRARY_SEARCH_PATH)
-AC_SUBST(HEADER_SEARCH_PATH)
 
 dnl Checks for header files.
 AC_HEADER_STDC

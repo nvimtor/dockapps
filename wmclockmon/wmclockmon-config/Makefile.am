@@ -21,9 +21,7 @@ wmclockmon_config_SOURCES =   \
 AM_CFLAGS += $(gtk_CFLAGS) $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 LIBS += $(gtk_LIBS)
 
-INCLUDES = @HEADER_SEARCH_PATH@
-
-wmclockmon_LDADD = @LIBRARY_SEARCH_PATH@ $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
+wmclockmon_LDADD = $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
 
 INSTALL_PROGRAM = \
 	@INSTALL_PROGRAM@ \

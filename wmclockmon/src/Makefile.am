@@ -17,11 +17,9 @@ wmclockmon_SOURCES =   \
 
 AM_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\""
 
-INCLUDES = @HEADER_SEARCH_PATH@
-
 AM_CFLAGS += $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 
-wmclockmon_LDADD = @LIBRARY_SEARCH_PATH@ $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
+wmclockmon_LDADD = $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
 
 INSTALL_PROGRAM = \
 	@INSTALL_PROGRAM@ \
