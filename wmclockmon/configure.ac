@@ -53,10 +53,7 @@ freebsd*)
 linux*|netbsd*|openbsd*|solaris*)
   ;;
 *)
-  echo ""
-  echo "Sorry, ${host_os} is not supported yet"
-  echo ""
-  exit 1
+  AC_MSG_ERROR([Sorry, ${host_os} is not supported yet])
   ;;
 esac
 AC_SUBST([SETGID_FLAGS])
