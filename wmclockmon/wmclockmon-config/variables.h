@@ -22,5 +22,7 @@ char  *light_color;
 char  *command;
 char  *msgcmd;
 Alarm *alarms;
+int    free_light_color;
+int    free_command;
 
 #endif

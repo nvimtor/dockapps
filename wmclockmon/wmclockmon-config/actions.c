@@ -19,11 +19,15 @@
 #include "edit.h"
 #include "actions.h"
 
+extern int free_light_color;
+extern int free_command;
 
 void quit_app() {
-    FREE(command);
+    if (free_command)
+        FREE(command);
     FREE(config_file);
-    FREE(light_color);
+    if (free_light_color)
+	FREE(light_color);
     free_alrm(&alarms);
     gtk_main_quit();
 }
@@ -76,6 +80,14 @@ void set_values() {
 
 
 void save_datas() {
+    if (free_command) {
+        FREE(command);
+        free_command = 0;
+    }
+    if (free_light_color) {
+        FREE(light_color);
+        free_light_color = 0;
+    }
     style_dir         = gtk_entry_get_text(GTK_ENTRY(wid_styledir));
     style_name        = gtk_entry_get_text(GTK_ENTRY(wid_stylename));
     light_color       = gtk_entry_get_text(GTK_ENTRY(wid_color));
