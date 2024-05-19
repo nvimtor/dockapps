@@ -1,165 +1,63 @@
-2005-04-07
-    * released version 0.8.1
-    * fixed a bug in configuration loading
+2020-05-16  Jeremy Sowden <jeremy@azazel.net>
 
-2005-02-06
-    * changed the way the dockapp is created so that the binary name is used
-      for the app properties (Nathan Mahon)
+	* src/main.c, wmclockmon-config/tools.c: fix memory-leaks reported
+	by Clang's static analyser
 
-2004-05-31
-    * released version 0.8.0
-    * added monitoring of new calendar files
-    * updated doc
+2020-05-14  Jeremy Sowden <jeremy@azazel.net>
 
-2004-05-29
-    * added yearly and monthly entries management in wmclockmon-cal
+	* wmclockmon-cal/main.c, wmclockmon-cal/main.h,
+	wmclockmon-cal/mainwindow.c, wmclockmon-cal/mainwindow.h,
+	wmclockmon-config/edit.c, wmclockmon-config/edit.h,
+	wmclockmon-config/main.c, wmclockmon-config/mainwindow.c,
+	wmclockmon-config/mainwindow.h, wmclockmon-config/tools.c,
+	wmclockmon-config/variables.h: fix global variables causing linkage
+	failure
 
-2004-03-25
-    * fixed wmclockmon-cal manpage typos
+	A number of global variables are declared in headers with no
+	explicit linkage.  This results in there being definitions of them
+	in multiple object files and causes linking to fail under gcc-10.
+	Add `extern` to the header declarations and separate declarations
+	with no linkage in files where they are assigned.
 
-2004-03-09
-    * released version 0.7.2
-    * added optional binary date in binary themes
+2016-02-16  Doug Torrance <dtorrance@piedmont.edu>
 
-2004-02-26
-    * released version 0.7.1
-    * fixed a bug with modifiers
-    * added a binary clock style
-    * fixed a bug on binary clock
-    * updated the doc
-    * updated styles
-    * fixed a comment bug in the configuration file
-    * fixed a bug in calendar alarms reloading
-    * fixed a bug in alarms switching
+	* wmclockmon-config/actions.c, wmclockmon-config/tools.c,
+	wmclockmon-config/variables.h: check whether memory has been allocated
+	before freeing.
 
-2004-02-25
-    * released version 0.7.0
-    * added binary clock
+	Two strings, command and light_color, were always freed even
+	though they were only conditionally allocated.  This could cause
+	"munmap_chunk(): invalid pointer" errors.  We fix this by keeping
+	track of whether they have been allocated and only freeing if they
+	have.
 
-2004-02-13
-    * released version 0.6.2
-    * fixed internet time bug
-    * fixed a bug in openning calendar at 00:00
-    * added a style
+2016-01-28  Doug Torrance <dtorrance@piedmont.edu>
 
-2004-02-12
-    * released version 0.6.1
-    * fixed doc (Marc 'HE' Brockschmidt)
-    * fixed some warnings (Marc 'HE' Brockschmidt)
-    * fixed directory automatic creation 
-      (no more hand creation needed -- Marc 'HE' Brockschmidt)
+	* doc/wmclockmon-config.1, doc/wmclockmon.1,
+	wmclockmon-config/configfile.h: fix typos pointed out by Lintian.
 
-2004-02-11
-    * released version 0.6.0
-    * added wmclockmon-cal support in wmclockmon
-    * updated wmclockmon-config
-    * updated doc
+	In particular, we had spelling-error-in-binary and
+	spelling-error-in-manpage warnings.
 
-2004-02-10
-    * added wmclockmon-cal
-    * updated doc
+2016-01-28  Julien BLACHE <jblache@debian.org>
 
-2004-02-09
-    * released version 0.5.3
-    * fixed a bug in default background
+	* configure.ac, wmclockmon-cal/Makefile.am, wmclockmon-cal/mainwindow.c,
+	wmclockmon-config/Makefile.am, wmclockmon-config/dialogs.c,
+	wmclockmon-config/edit.c, wmclockmon-config/mainwindow.c: build against
+	GTK+ 2.0.
 
-2004-01-18
-    * added label option (John McKerrel)
+2016-01-27  Doug Torrance <dtorrance@piedmont.edu>
 
-2004-01-12
-    * added netbsd to supported platforms
+	* src/Makefile.am, wmclockmon-cal/Makefile.am,
+	wmclockmon-config/Makefile.am: update autotools files
 
-2003-12-08
-    * patched configure to work well with freebsd (Munish Chopra)
+	Define the DATADIR macro and make sure that the auxiliary programs
+	wmclockmon-cal and wmclockmon-config are built properly.
 
-2003-12-02
-    * released version 0.5.2
-    * fixed online help
-    * fixed a different behavior between BSDs and Linux to obtain the current
-      timezone
+2024-05-07  Jeremy Sowden <azazel@debian.org>
 
-2003-10-25
-    * released version 0.5.1
-    * several compilation warning fixes (Marc 'HE' Brockschmidt)
-    * added debian package creation directory (Marc 'HE' Brockschmidt)
-    * added a default style dir in the code
+	* debian/changelog, debian/control, debian/copyright, debian/dirs:
+	debian/docs, debian/menu, debian/rules: remove Debian packaging
 
-2003-10-24
-    * released version 0.5.0
-    * added alarm messages
-    * fixed a bug in configuration tool about alarms creation
-    * fixed a bug in main.c about launching the configuration tool
-      if a alternate configuration file is given
-    * changed configuration tool's window-size
-
-2003-10-10
-    * released version 0.4.0
-    * fixed a bug acting on LED styles (Thanks for your magic Michele ;)
-
-2003-10-09
-    * added a styles subdir with a Makefile to install them
-
-2003-10-08
-    * added skin selection to configuration tool
-    * finished main.c
-    * updated the docs
-
-2003-10-07
-    * added skin code to main.c
-
-2003-09-26
-    * version 0.3.0 released
-    * added 4 more styles
-
-2003-09-22
-    * added internet time feature
-    * updated wmclockmon-config
-    * updated manpage
-
-2003-09-20
-    * added new LED looks (Noberasco Michele)
-    * fixed a bug in -lc option's argument loading (Noberasco Michele)
-
-2003-09-02
-    * fixed a bug in AM/PM display (Piers Kittel)
-
-2003-02-11
-    * version 0.2.2 released
-    * fixed a bug in setting light color with command-line
-    * changed behavior so that command-line options override config file
-      options
-    * added more doc
-
-2003-01-01
-    * version 0.2.1 released
-    * added the "don't use current locale" feature
-    * fixed man page
-
-2002-12-06
-    * version 0.2.0 released
-    * fixed a bug in alarm toggling
-    * added multiple alarms feature
-    * added the use if a configuration file
-    * added configuration tool
-    * fixed man page
-
-2002-10-05
-    * version 0.1.3 released
-    * bug fix in windowed mode
-
-2002-09-27
-    * version 0.1.2 released
-    * transformation of accentuated letters in non accentuated letters
-      for more localization
-
-2002-09-25
-    * version 0.1.1 released
-    * fixed a bug in 12h clock mode for midnight (Patrick Li)
-    * fixed man page
-
-2002-09-07
-    * version 0.1.0 released
-    * added styles
-
-2002-08-31
-    * Creation :)
+	The upstream source includes some ancient Debian packaging.  Get
+	rid of it.
