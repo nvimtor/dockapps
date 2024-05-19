@@ -7,22 +7,19 @@
 
 #include "defines.h"
 
-int    backlight;
-int    switch_authorized;
-int    h12;
-int    time_mode;
-int    use_leds;
-int    use_locale;
-int    showcal;
-int    calalrms;
-char  *style_name;
-char  *style_dir;
-char  *config_file;
-char  *light_color;
-char  *command;
-char  *msgcmd;
-Alarm *alarms;
-int    free_light_color;
-int    free_command;
+extern int    backlight;
+extern int    switch_authorized;
+extern int    h12;
+extern int    time_mode;
+extern int    use_locale;
+extern int    showcal;
+extern int    calalrms;
+extern char  *style_name;
+extern char  *style_dir;
+extern char  *config_file;
+extern char  *light_color;
+extern char  *command;
+extern char  *msgcmd;
+extern Alarm *alarms;
 
 #endif

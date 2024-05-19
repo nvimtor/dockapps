@@ -13,6 +13,18 @@
 #include "mainwindow.h"
 #include "actions.h"
 
+int    backlight;
+int    switch_authorized;
+int    h12;
+int    use_locale;
+int    showcal;
+int    calalrms;
+char  *style_name;
+char  *style_dir;
+char  *config_file;
+char  *light_color;
+char  *command;
+Alarm *alarms;
 
 void Usage () {
     printf("Usage: "PACKAGE"-config [-h] [-v] [-f filename]\n"

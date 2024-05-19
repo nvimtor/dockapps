@@ -26,6 +26,8 @@
 #define MONTSTR "XXXX-XX-"
 
 
+GtkWidget *application;
+
 /* Calendar part */
 static GtkWidget *calendar;
 static GtkWidget *closewindow;

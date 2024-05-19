@@ -16,6 +16,8 @@
 #include "main.h"
 
 
+struct tm *timeinfos;
+
 void Usage () {
     printf("Usage: "PACKAGE"-cal [-h] [-v]\n"
            " -h          : short usage help\n"

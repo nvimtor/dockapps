@@ -9,7 +9,7 @@
 #include <sys/time.h>
 
 
-struct tm *timeinfos;
+extern struct tm *timeinfos;
 
 void quit_app();
 

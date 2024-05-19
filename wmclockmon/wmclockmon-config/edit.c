@@ -11,6 +11,8 @@
 #include "tools.h"
 #include "edit.h"
 
+char *newalarm;
+
 static GtkWidget *wid_status;
 static GtkWidget *wid_time;
 static GtkWidget *wid_date;

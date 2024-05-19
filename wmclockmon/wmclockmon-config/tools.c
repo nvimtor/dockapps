@@ -19,6 +19,8 @@
 
 int    free_light_color;
 int    free_command;
+int    time_mode;
+char  *msgcmd;
 
 int fexist(const char *filename) {
     FILE *file;

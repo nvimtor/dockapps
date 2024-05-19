@@ -5,7 +5,7 @@
 #ifndef EDIT_H
 #define EDIT_H
 
-char *newalarm;
+extern char *newalarm;
 
 void edit_dialog(const char *title,
         int on,
