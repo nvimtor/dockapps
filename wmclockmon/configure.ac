@@ -52,10 +52,10 @@ dnl =========
 AC_ARG_ENABLE(debug,
              [  --enable-debug          turn on debugging [default=on]],,enable_debug=no)
 if test "$enable_debug" = yes; then
-  DFLAGS="-Wall -g -ansi -pedantic"
+  debug_CFLAGS="-Wall -g -ansi -pedantic"
   AC_DEFINE(DEBUG, 1, [use debug code])
 fi
-AC_SUBST(DFLAGS)
+AC_SUBST([debug_CFLAGS])
 
 
 dnl ============

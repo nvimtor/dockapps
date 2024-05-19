@@ -1,3 +1,5 @@
+include $(top_srcdir)/Makefile.common.am
+
 bin_PROGRAMS = wmclockmon-cal
 
 wmclockmon_cal_SOURCES =   \
@@ -9,9 +11,7 @@ wmclockmon_cal_SOURCES =   \
 	tools.c \
 	tools.h
 
-CPPFLAGS = @CPPFLAGS@ @DFLAGS@
-
-AM_CFLAGS = $(gtk_CFLAGS) $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
+AM_CFLAGS += $(gtk_CFLAGS) $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 LIBS += $(gtk_LIBS)
 
 INCLUDES = @HEADER_SEARCH_PATH@

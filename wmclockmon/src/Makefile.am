@@ -1,3 +1,5 @@
+include $(top_srcdir)/Makefile.common.am
+
 bin_PROGRAMS = wmclockmon
 
 wmclockmon_SOURCES =   \
@@ -13,13 +15,11 @@ wmclockmon_SOURCES =   \
 	parts.xpm \
 	letters.xpm
 
-CPPFLAGS = @CPPFLAGS@ @DFLAGS@
-
 AM_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\""
 
 INCLUDES = @HEADER_SEARCH_PATH@
 
-AM_CFLAGS = $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
+AM_CFLAGS += $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 
 wmclockmon_LDADD = @LIBRARY_SEARCH_PATH@ $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
 
