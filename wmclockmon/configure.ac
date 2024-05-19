@@ -62,13 +62,11 @@ esac
 AC_SUBST([SETGID_FLAGS])
 
 dnl Checks for header files.
-AC_HEADER_STDC
 AC_CHECK_HEADERS([fcntl.h memory.h stddef.h stdlib.h string.h strings.h sys/param.h sys/time.h unistd.h])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_SIZE_T
-AC_HEADER_TIME
 
 dnl Checks for library functions.
 AC_FUNC_MALLOC
