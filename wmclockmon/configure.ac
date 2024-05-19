@@ -1,15 +1,15 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.52)
+AC_PREREQ([2.52])
 
 dnl AC_INIT(src/main.c)
 dnl AM_INIT_AUTOMAKE(wmclockmon, 0.8.1)
-AC_INIT(wmclockmon, 0.8.1, tnemeth@free.fr)
+AC_INIT([wmclockmon], [0.8.1], [tnemeth@free.fr])
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE($PACKAGE_NAME, $PACKAGE_VERSION)
+AM_INIT_AUTOMAKE([$PACKAGE_NAME], [$PACKAGE_VERSION])
 
-AC_CONFIG_SRCDIR(src/main.c)
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_SRCDIR([src/main.c])
+AM_CONFIG_HEADER([config.h])
 
 dnl Checks for programs.
 AC_PROG_AWK
@@ -39,7 +39,7 @@ AC_ARG_ENABLE([debug],
               [AS_HELP_STRING([--enable-debug], [turn on debugging [default=no]])])
 if test "$enable_debug" = yes; then
   debug_CFLAGS="-Wall -g -ansi -pedantic"
-  AC_DEFINE(DEBUG, 1, [use debug code])
+  AC_DEFINE([DEBUG], [1], [use debug code])
 fi
 AC_SUBST([debug_CFLAGS])
 
@@ -62,7 +62,7 @@ linux*|netbsd*|openbsd*|solaris*)
   exit 1
   ;;
 esac
-AC_SUBST(SETGID_FLAGS)
+AC_SUBST([SETGID_FLAGS])
 
 dnl Checks for header files.
 AC_HEADER_STDC
@@ -75,12 +75,12 @@ AC_HEADER_TIME
 
 dnl Checks for library functions.
 AC_FUNC_MALLOC
-AC_CHECK_FUNCS(select strtoul uname)
+AC_CHECK_FUNCS([select strtoul uname])
 
-AC_CONFIG_FILES(Makefile \
-		src/Makefile \
-		doc/Makefile \
-		wmclockmon-config/Makefile\
-		wmclockmon-cal/Makefile\
-		styles/Makefile)
+AC_CONFIG_FILES([Makefile
+		 doc/Makefile
+		 src/Makefile
+		 styles/Makefile
+		 wmclockmon-config/Makefile
+		 wmclockmon-cal/Makefile])
 AC_OUTPUT
