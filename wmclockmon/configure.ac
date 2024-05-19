@@ -2,6 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.52])
 
 AC_INIT([wmclockmon], [0.8.1], [tnemeth@free.fr])
+AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([no-dist-gzip dist-xz])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
