@@ -84,7 +84,6 @@ esac
 
 AC_SUBST(OS)
 AC_SUBST(SETGID_FLAGS)
-AC_SUBST(LIBS)
 
 if test "$ignore_buffers" = yes; then
   AC_DEFINE(IGNORE_BUFFERS, 1, [use '--ignore-buffers' option])
