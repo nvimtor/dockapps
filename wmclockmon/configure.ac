@@ -48,22 +48,12 @@ dnl ============
 dnl Check for OS
 dnl ============
 
-ignore_buffers=no
-ignore_cached=no
-ignore_wired=no
-
 case ${host_os} in
-linux*)
-  ignore_buffers=yes
-  ignore_cached=yes
-  ;;
 freebsd*)
-  ignore_wired=yes
-  ignore_cached=yes
   LIBS="$LIBS -lkvm"
   SETGID_FLAGS="-g kmem -m 2755 -o root"
   ;;
-netbsd*|openbsd*|solaris*)
+linux*|netbsd*|openbsd*|solaris*)
   ;;
 *)
   echo ""
@@ -72,19 +62,7 @@ netbsd*|openbsd*|solaris*)
   exit 1
   ;;
 esac
-
 AC_SUBST(SETGID_FLAGS)
-
-if test "$ignore_buffers" = yes; then
-  AC_DEFINE(IGNORE_BUFFERS, 1, [use '--ignore-buffers' option])
-fi
-if test "$ignore_cached" = yes; then
-  AC_DEFINE(IGNORE_CACHED, 1, [use '--ignore-cached' option])
-fi
-if test "$ignore_wired" = yes; then
-  AC_DEFINE(IGNORE_WIRED, 1, [use '--ignore-wired' option])
-fi
-
 
 dnl Checks for header files.
 AC_HEADER_STDC
