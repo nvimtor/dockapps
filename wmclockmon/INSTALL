@@ -23,13 +23,4 @@ INSTALLING THE DOCKAPP :
     $ su -c "make install-strip"
 
 
-4. INSTALL THE STYLE-FILES :
-
-    $ cp -r styles/ where/ever/you/want
-
-    or
-
-    $ su -c "cp -r styles/ where/ever/you/want"
-
-
-5. THAT'S ALL FOLKS :)
+4. THAT'S ALL FOLKS :)
