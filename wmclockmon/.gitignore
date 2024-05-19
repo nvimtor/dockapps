@@ -19,3 +19,4 @@ Makefile.in
 /missing
 *.o
 /stamp-h1
+/wmclockmon-*.tar.*
