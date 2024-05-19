@@ -49,8 +49,9 @@ dnl ===============================================
 dnl =========
 dnl Debugging
 dnl =========
-AC_ARG_ENABLE(debug,
-             [  --enable-debug          turn on debugging [default=on]],,enable_debug=no)
+
+AC_ARG_ENABLE([debug],
+              [AS_HELP_STRING([--enable-debug], [turn on debugging [default=no]])])
 if test "$enable_debug" = yes; then
   debug_CFLAGS="-Wall -g -ansi -pedantic"
   AC_DEFINE(DEBUG, 1, [use debug code])
