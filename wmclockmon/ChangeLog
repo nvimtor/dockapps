@@ -1,3 +1,119 @@
+2024-05-19  Jeremy Sowden <jeremy@azazel.net>
+
+	* .gitignore, configure.ac: use `AC_CONFIG_AUX_DIR`
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* doc/Makefile.am: include sample config-files in dist tar-ball
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* BUGS, INSTALL, styles/Makefile.am: include styles in dist tar-ball
+	and install in `$(pkgdatadir)`
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* .gitignore, configure.ac: change compression for dist tar-ball
+
+	Ignore generated tar-balls.
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* Makefile.common.am, src/Makefile.am, wmclockmon-cal/Makefile.am:
+	wmclockmon-config/Makefile.am: simplify `INSTALL_PROGRAM` definitions
+
+	`AM_INSTALL_PROGRAM_FLAGS` is obsolete.
+
+	Define `INSTALL_PROGRAM` once.
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: use `AS_IF` and `AS_CASE`
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: use `AC_MSG_ERROR`
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: remove obsolete autoconf header checks
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: remove unused `AC_CANONINCAL_TARGET`
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: update automake macros
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: quote autoconf macro arguments
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/Makefile.am, wmclockmon-config/Makefile.am:
+	use `LDADD` for `gtk_LIBS`
+
+2024-05-07  Jeremy Sowden <azazel@debian.org>
+
+	* src/Makefile.am, wmclockmon-cal/Makefile.am:
+	wmclockmon-config/Makefile.am: use `LDADD` for all app's
+
+	wmclockmon-cal and wmclockmon-config use the wrong prefixes, but no
+	prefixes are necessary, so remove them all.
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: remove unused `IGNORE_*` variables
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: remove unused `OS` variable
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: remove unnecessary `AC_SUBST` of `LIBS`
+
+	autoconf does this automatically.
+
+2024-05-07  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac, src/Makefile.am, wmclockmon-cal/Makefile.am:
+	wmclockmon-config/Makefile.am: remove `--with-incs-from` and
+	`--with-libs-from`
+
+	They are superfluous, duplicating the use of `LDFLAGS` and
+	`CPPFLAGS`.
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: use `AS_HELP_STRING` for `--enable-debug` and fix typo'
+
+2024-05-07  Jeremy Sowden <azazel@debian.org>
+
+	* Makefile.common.am, configure.ac, src/Makefile.am:
+	wmclockmon-cal/Makefile.am, wmclockmon-config/Makefile.am: rename
+	`DFLAGS` `debug_CFLAGS`
+
+	`DFLAGS` is used by autoconf for the D programming language.  Add
+	it to `AM_CFLAGS`, not `CPPFLAGS`, because none of the flags is
+	for cpp, and `CPPFLAGS` should be reserved for the user anyway.
+
+2024-05-07  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac, src/Makefile.am, wmclockmon-cal/Makefile.am,
+	wmclockmon-config/Makefile.am: use pkg-config for X libraries
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+	* autogen: add autogen script
+
+2024-05-17  Jeremy Sowden <azazel@debian.org>
+
+	* .gitignore, src/.gitignore, wmclockmon-cal/.gitignore:
+	wmclockmon-config/.gitignore: ignore build and editor artefacts
+
 2020-05-16  Jeremy Sowden <jeremy@azazel.net>
 
 	* src/main.c, wmclockmon-config/tools.c: fix memory-leaks reported
