@@ -12,9 +12,8 @@ wmclockmon_cal_SOURCES =   \
 	tools.h
 
 AM_CFLAGS += $(gtk_CFLAGS) $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
-LIBS += $(gtk_LIBS)
 
-LDADD = $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
+LDADD = $(gtk_LIBS) $(x11_LIBS) $(xext_LIBS) $(xpm_LIBS)
 
 INSTALL_PROGRAM = \
 	@INSTALL_PROGRAM@ \
