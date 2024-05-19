@@ -24,9 +24,13 @@ AC_ARG_WITH(libs-from,
        [  --with-libs-from        pass compiler flags to look for libraries],
        [lib_search_path="$withval $lib_search_path"])
 
+lib_search_path="$lib_search_path -L/usr/local/lib"
+
 AC_ARG_WITH(incs-from,
        [  --with-incs-from        pass compiler flags to look for header files],
        [inc_search_path="$withval $inc_search_path"])
+
+inc_search_path="$inc_search_path -I/usr/local/include"
 
 PKG_CHECK_MODULES([gtk], [gtk+-2.0])
 
@@ -34,40 +38,9 @@ dnl ===========================================
 dnl             Stuff that uses X
 dnl ===========================================
 
-AC_PATH_XTRA
-
-X_LIBRARY_PATH=$x_libraries
-
-XCFLAGS="$X_CFLAGS"
-
-XLFLAGS="$X_LIBS"
-
-XLIBS="-lX11 $X_EXTRA_LIBS"
-
-lib_search_path="$lib_search_path $XLFLAGS -L/usr/local/lib"
-inc_search_path="$inc_search_path $XCFLAGS -I/usr/local/include"
-
-AC_SUBST(X_LIBRARY_PATH)
-
-dnl Shape extension
-dnl ===============
-AC_CHECK_LIB(Xext, XShapeCombineMask, [XLIBS="$XLIBS -lXext"],
-    [echo "The shape extension stuff could not be found in the X client libraries"
-     exit 1],
-    $X_LIBS $X_EXTRA_LIBS -lX11)
-
-dnl XPM library
-dnl ===========
-AC_CHECK_LIB(Xpm, XpmCreatePixmapFromData, [XLIBS="$XLIBS -lXpm"],
-    [echo "The libXpm library was not found, but is necessary to build this library"
-     exit 1],
-    $X_LIBS $X_EXTRA_LIBS -lX11)
-
-AC_SUBST(XCFLAGS)
-AC_SUBST(XLFLAGS)
-AC_SUBST(XLIBS)
-
-AC_SUBST(X_EXTRA_LIBS)
+PKG_CHECK_MODULES([x11],  [x11])
+PKG_CHECK_MODULES([xext], [xext])
+PKG_CHECK_MODULES([xpm],  [xpm])
 
 dnl ===============================================
 dnl             End of stuff that uses X
