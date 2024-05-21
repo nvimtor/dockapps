@@ -542,14 +542,14 @@ static void load_style(const char *stylename) {
         {"SDigitWidth",    T_INT,  &style.sdigitw, &default_style.sdigitw},
         {"BDigitSep",      T_INT,  &style.bsep,    &default_style.bsep},
         {"SDigitSep",      T_INT,  &style.ssep,    &default_style.ssep},
-        {NULL,             T_STRING, NULL}
+        {NULL,             T_STRING, NULL, NULL}
     };
     StyleDef  letters_style_opts[] = {
         {"Letters",        T_FILE, &style.letters, &default_style.letters},
         {"LetterHeight",   T_INT,  &style.letterh, &default_style.letterh},
         {"LetterWidth",    T_INT,  &style.letterw, &default_style.letterw},
         {"LetterSep",      T_INT,  &style.lsep,    &default_style.lsep},
-        {NULL,             T_STRING, NULL}
+        {NULL,             T_STRING, NULL, NULL}
     };
     StyleDef  itime_style_opts[] = {
         {"IBacklightOn",   T_FILE, &style.ibackl, &default_style.ibackl},
@@ -564,7 +564,7 @@ static void load_style(const char *stylename) {
         {"Graph_PosX",     T_INT,  &style.gposx,  &default_style.gposx},
         {"Graph_PosY",     T_INT,  &style.gposy,  &default_style.gposy},
         {"Graph_Display",  T_BOOL, &style.gdisp,  &default_style.gdisp},
-        {NULL,             T_STRING, NULL}
+        {NULL,             T_STRING, NULL, NULL}
     };
     StyleDef  btime_style_opts[] = {
         {"BBacklightOn",  T_FILE, &style.bbackl, &default_style.bbackl},
@@ -593,7 +593,7 @@ static void load_style(const char *stylename) {
         {"Bin_d3Y",       T_INT,  &style.bind3y, &default_style.bind3y},
         {"Bin_d4X",       T_INT,  &style.bind4x, &default_style.bind4x},
         {"Bin_d4Y",       T_INT,  &style.bind4y, &default_style.bind4y},
-        {NULL,            T_STRING, NULL}
+        {NULL,            T_STRING, NULL, NULL}
     };
     StyleDef  main_style_opts[] = {
         {"PartsStyle",     T_FILE, &style.parts_s, &default_style.parts_s},
@@ -625,7 +625,7 @@ static void load_style(const char *stylename) {
         {"Day_PosY",       T_INT,  &style.dposy, &default_style.dposy},
         {"Month_PosX",     T_INT,  &style.oposx, &default_style.oposx},
         {"Month_PosY",     T_INT,  &style.oposy, &default_style.oposy},
-        {NULL,             T_STRING, NULL}
+        {NULL,             T_STRING, NULL, NULL}
     };
     char *partsfile;
     char *lettersfile;
