@@ -13,7 +13,7 @@
 void *xmalloc(size_t size);
 char *xstrdup(const char *string);
 int   getbool(const char *value);
-char *robust_home();
+char *robust_home(void);
 char *get_file(const char *datestr);
 
 #endif

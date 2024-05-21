@@ -106,7 +106,7 @@ int getbool(const char *value) {
 }
 
 
-void load_cfgfile() {
+void load_cfgfile(void) {
     FILE *file;
     int  i = 0;
     char line[MAXSTRLEN + 1];
@@ -159,7 +159,7 @@ void load_cfgfile() {
 }
 
 
-char *robust_home() {
+char *robust_home(void) {
     if (getenv("HOME"))
         return getenv("HOME");
     else if (getenv("USER") && getpwnam(getenv("USER")))
@@ -173,7 +173,7 @@ char *robust_home() {
 }
 
 
-void save_cfgfile() {
+void save_cfgfile(void) {
     FILE  *file;
     Alarm *alrm = alarms;
 

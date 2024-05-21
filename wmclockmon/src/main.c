@@ -222,7 +222,7 @@ static char*     label             = NULL;
 
 
 /* prototypes */
-static void rotate_style();
+static void rotate_style(void);
 static Bool stringdiff(const char *s1, const char *s2);
 static char *set_filename(const char *file_name, const char *ext);
 static Bool set_style_value(StyleDef opt, char *value);
@@ -233,24 +233,24 @@ static void init_pixmap(char **src_pix, Pixmap *dst_pix, const char *text,
         XpmColorSymbol *c, int n, int keep_mask);
 static void init_pixfile(char *src_name, Pixmap *dst_pix, const char *text,
         XpmColorSymbol *c, int n, int keep_mask);
-static void graphics_init();
+static void graphics_init(void);
 static void control(unsigned int btn, int x, int y, unsigned int state);
-static void draw_dockapp();
-static void update();
-static void switch_light();
+static void draw_dockapp(void);
+static void update(void);
+static void switch_light(void);
 static void draw_background(Light back);
 static void draw_bigdigit(int num, int x, int y);
 static void draw_smalldigit(int num, int x, int y);
 static char equiv(char letter);
 static void draw_textdigit(const char *text, int x, int y);
-static void draw_timedigit();
-static void draw_datedigit();
-static void draw_itimedigit();
-static void draw_binarytime();
+static void draw_timedigit(void);
+static void draw_datedigit(void);
+static void draw_itimedigit(void);
+static void draw_binarytime(void);
 static void parse_arguments(int argc, char **argv);
 static void print_help(char *prog);
-static void time_update();
-static Bool raise_alarm();
+static void time_update(void);
+static Bool raise_alarm(void);
 static Bool filestat(const char *filename, time_t *time, int mode);
 static int  my_system(char *cmd, char *opt);
 void *xmalloc(size_t size);
@@ -260,15 +260,15 @@ static void free_alrm(Alarm **list);
 static Bool alarms_on(Alarm *list);
 static void switch_alarms(Alarm *list);
 static Bool getbool(char *value);
-static Bool load_cfgfile();
+static Bool load_cfgfile(void);
 static char *get_calend_file(int type);
-static int cal_alrms_chg();
+static int cal_alrms_chg(void);
 static void load_cal_file(int type);
-static void load_calalrms();
-static void reload_alarms();
+static void load_calalrms(void);
+static void reload_alarms(void);
 static void show_cal_file(int type);
-static void show_cal();
-static char *robust_home();
+static void show_cal(void);
+static char *robust_home(void);
 
 
 
@@ -350,7 +350,7 @@ int main(int argc, char **argv) {
 }
 
 
-static void rotate_style() {
+static void rotate_style(void) {
     DIR           *dir;
     struct dirent *dir_ent;
     char          *next = NULL;
@@ -690,7 +690,7 @@ static void init_pixfile(char *src_name, Pixmap *dst_pix, const char *text,
 }
 
 
-static void graphics_init() {
+static void graphics_init(void) {
     XpmColorSymbol colors[3] = { {"Back0", NULL, 0}, {"Back1", NULL, 0}, {"Back2", NULL, 0} };
     int ncolor = 0;
 
@@ -834,7 +834,7 @@ static void control(unsigned int btn, int x, int y, unsigned int state) {
 }
 
 
-static void draw_dockapp() {
+static void draw_dockapp(void) {
     /* all clear */
     draw_background(backlight);
 
@@ -854,7 +854,7 @@ static void draw_dockapp() {
 
 
 /* called by timer */
-static void update() {
+static void update(void) {
     static Light pre_backlight;
     static Bool  in_alarm_mode = False;
 
@@ -891,7 +891,7 @@ static void update() {
 
 
 /* called when mouse button pressed */
-static void switch_light() {
+static void switch_light(void) {
     switch (backlight) {
         case LIGHTOFF: backlight = LIGHTON;  break;
         case LIGHTON:  backlight = LIGHTOFF; break;
@@ -977,7 +977,7 @@ static void draw_textdigit(const char *text, int x, int y) {
 }
 
 
-static void draw_timedigit() {
+static void draw_timedigit(void) {
     int hour = timeinfos->tm_hour, dx = 0, dy = 0;
 
     if (backlight == LIGHTON) {
@@ -1033,7 +1033,7 @@ static void draw_timedigit() {
 }
 
 
-static void draw_datedigit() {
+static void draw_datedigit(void) {
     char text[5];
 
     if (label) {
@@ -1048,7 +1048,7 @@ static void draw_datedigit() {
 }
 
 
-static void draw_itimedigit() {
+static void draw_itimedigit(void) {
     int dx = 0, dy = 0, v1, v10, v100, v0, v00, nb, pc;
     int bw = style.bdigitw, bh = style.bdigith;
     int binc = style.bdigitw + 2;
@@ -1118,7 +1118,7 @@ static void draw_bits(int num, int x, int y, int u, int d, int sx, int sy, int d
 }
 
 
-static void draw_binarytime() {
+static void draw_binarytime(void) {
     int sx = style.binzx;
     int sy = style.binzy;
     int d1x = style.bind1x;
@@ -1268,7 +1268,7 @@ static void print_help(char *prog)
 }
 
 
-static void time_update() {
+static void time_update(void) {
     time_t     tnow;
 
     time(&tnow);
@@ -1296,7 +1296,7 @@ static void time_update() {
 }
 
 
-static Bool raise_alarm() {
+static Bool raise_alarm(void) {
     if ((timeinfos->tm_hour == 0) &&
         (timeinfos->tm_min  == 0) &&
         (timeinfos->tm_sec  == 0)) {
@@ -1509,7 +1509,7 @@ static Bool getbool(char *value) {
 }
 
 
-static Bool load_cfgfile() {
+static Bool load_cfgfile(void) {
     FILE *file;
     int  i = 0, ok = True;
     char line[MAXSTRLEN + 1];
@@ -1612,7 +1612,7 @@ static char *get_calend_file(int type) {
 }
 
 
-static int cal_alrms_chg() {
+static int cal_alrms_chg(void) {
     static time_t  cal_u_mtime = 0;
     static time_t  cal_y_mtime = 0;
     static time_t  cal_m_mtime = 0;
@@ -1658,13 +1658,13 @@ static void load_cal_file(int type) {
 }
 
 
-static void load_calalrms() {
+static void load_calalrms(void) {
     int i;
     for (i = 1 ; i < 4 ; i++) load_cal_file(i);
 }
 
 
-static void reload_alarms() {
+static void reload_alarms(void) {
     FILE *file;
     char line[MAXSTRLEN + 1];
     char *value;
@@ -1718,13 +1718,13 @@ static void show_cal_file(int type) {
 }
 
 
-static void show_cal() {
+static void show_cal(void) {
     int i;
     for (i = 1 ; i < 4 ; i++) show_cal_file(i);
 }
 
 
-static char *robust_home() {
+static char *robust_home(void) {
     if (getenv("HOME"))
         return getenv("HOME");
     else if (getenv("USER") && getpwnam(getenv("USER")))

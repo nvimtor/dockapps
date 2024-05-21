@@ -18,7 +18,7 @@
 
 struct tm *timeinfos;
 
-void Usage () {
+void Usage (void) {
     printf("Usage: "PACKAGE"-cal [-h] [-v]\n"
            " -h          : short usage help\n"
            " -v          : show version\n\n");
@@ -26,7 +26,7 @@ void Usage () {
 }
 
 
-void quit_app() {
+void quit_app(void) {
     gtk_main_quit();
 }
 

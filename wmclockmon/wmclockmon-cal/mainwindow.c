@@ -49,7 +49,7 @@ static int        dateb = 0;
 static char       daystr[MAXSTRLEN + 1];
 
 
-static void show_editor() {
+static void show_editor(void) {
     gtk_widget_hide(calendar);
     gtk_widget_hide(closewindow);
     gtk_widget_grab_default(GTK_WIDGET(cancel));
@@ -62,7 +62,7 @@ static void show_editor() {
 }
 
 
-static void hide_editor() {
+static void hide_editor(void) {
     gtk_widget_hide(text_buttons);
     gtk_widget_hide(edit);
     gtk_widget_hide(save);
@@ -145,7 +145,7 @@ static void to_button(int button) {
 }
 
 
-static void set_buttons_text() {
+static void set_buttons_text(void) {
     guint  year, month, day;
     char datestr[MAXSTRLEN + 1];
 
@@ -161,7 +161,7 @@ static void set_buttons_text() {
 }
 
 
-static void editor_flush() {
+static void editor_flush(void) {
     gtk_text_buffer_set_text(GTK_TEXT_BUFFER(gtk_text_view_get_buffer(GTK_TEXT_VIEW(edit))), "", 0);
 }
 
@@ -196,29 +196,29 @@ static void check_button(int bnum, GtkWidget *button) {
 }
 
 
-static void cal_click() {
+static void cal_click(void) {
     set_buttons_text();
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button_u), TRUE);
     editor_fill(UNIQUE);
 }
 
 
-static void set_text_u() {
+static void set_text_u(void) {
     check_button(UNIQUE, button_u);
 }
 
 
-static void set_text_y() {
+static void set_text_y(void) {
     check_button(YEAR, button_y);
 }
 
 
-static void set_text_m() {
+static void set_text_m(void) {
     check_button(MONTH, button_m);
 }
 
 
-static void save_datas() {
+static void save_datas(void) {
     char *filename = get_file(daystr);
     int   len      = strlen(robust_home()) + strlen(DEFAULT_CONFIGDIR);
     char *dirname  = xmalloc(len + 2);
@@ -255,7 +255,7 @@ static void save_datas() {
 }
 
 
-static void delete_file() {
+static void delete_file(void) {
     char *filename = get_file(daystr);
     guint year, month, day;
 
@@ -280,7 +280,7 @@ static int check_day(const char *filename, const char *startstr) {
 }
 
 
-static void mark_days() {
+static void mark_days(void) {
     char          *Home = robust_home();
     DIR           *dir;
     struct dirent *dir_ent;
@@ -319,7 +319,7 @@ static void mark_days() {
 }
 
 
-void create_mainwindow() {
+void create_mainwindow(void) {
     GtkWidget *main_vbox;
     GtkWidget *buttons_hbox;
 

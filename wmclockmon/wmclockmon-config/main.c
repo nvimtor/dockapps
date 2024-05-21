@@ -26,7 +26,7 @@ char  *light_color;
 char  *command;
 Alarm *alarms;
 
-void Usage () {
+void Usage (void) {
     printf("Usage: "PACKAGE"-config [-h] [-v] [-f filename]\n"
            " -h          : short usage help\n"
            " -v          : show version\n"

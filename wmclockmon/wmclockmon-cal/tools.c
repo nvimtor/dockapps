@@ -50,7 +50,7 @@ int getbool(const char *value) {
 }
 
 
-char *robust_home() {
+char *robust_home(void) {
     if (getenv("HOME"))
         return getenv("HOME");
     else if (getenv("USER") && getpwnam(getenv("USER")))

@@ -18,7 +18,7 @@
 #include "edit.h"
 #include "actions.h"
 
-void quit_app() {
+void quit_app(void) {
     FREE(command);
     FREE(config_file);
     FREE(light_color);
@@ -52,7 +52,7 @@ void set_list() {
     list_unsel_cb(GTK_CLIST(alarmlist), 0, 0, NULL, NULL);
 }
 
-void set_values() {
+void set_values(void) {
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wid_backlight), backlight);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wid_blink),
             switch_authorized);
@@ -76,7 +76,7 @@ void set_values() {
 }
 
 
-void save_datas() {
+void save_datas(void) {
     FREE(style_dir);
     FREE(style_name);
     FREE(light_color);
@@ -112,7 +112,7 @@ void do_add(GtkWidget *widget UNUSED, void *data UNUSED) {
 }
 
 
-void add_alarm() {
+void add_alarm(void) {
     edit_dialog("Add alarm...", TRUE, "12:00", NULL, NULL, do_add);
 }
 
@@ -147,7 +147,7 @@ void do_change(GtkWidget *widget UNUSED, void *data UNUSED) {
 
 
 
-void edit_entry() {
+void edit_entry(void) {
     Alarm *alrm;
 
     alrm = (Alarm *)gtk_clist_get_row_data(GTK_CLIST(alarmlist), selected_row);
@@ -155,7 +155,7 @@ void edit_entry() {
 }
 
 
-void switch_onoff() {
+void switch_onoff(void) {
     Alarm *alrm;
 
     /* get selected default box */
@@ -168,7 +168,7 @@ void switch_onoff() {
 }
 
 
-void remove_alarm() {
+void remove_alarm(void) {
     Alarm *alrm, *prev;
 
     alrm = (Alarm *)gtk_clist_get_row_data(GTK_CLIST(alarmlist), selected_row);

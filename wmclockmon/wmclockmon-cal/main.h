@@ -11,6 +11,6 @@
 
 extern struct tm *timeinfos;
 
-void quit_app();
+void quit_app(void);
 
 #endif
