@@ -97,7 +97,7 @@ void save_datas() {
     h12               = GTK_TOGGLE_BUTTON(wid_h12)->active;
     if (GTK_TOGGLE_BUTTON(wid_itm)->active)
         time_mode = 1;
-    if (GTK_TOGGLE_BUTTON(wid_bin)->active)
+    else if (GTK_TOGGLE_BUTTON(wid_bin)->active)
         time_mode = 2;
     else
         time_mode = 0;
