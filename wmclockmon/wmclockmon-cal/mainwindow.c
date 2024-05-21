@@ -103,8 +103,8 @@ static void load_file(const char *datestr) {
     if ((file = fopen(filename, "r")) != NULL) {
         while (! feof(file)) {
             char line[MAXSTRLEN + 1];
-            bzero(line, MAXSTRLEN + 1);
-            fgets(line, MAXSTRLEN, file);
+            if (!fgets(line, MAXSTRLEN, file))
+                break;
             if (line[0] != 0)
 	      gtk_text_buffer_insert(buf, &iter, line, -1);
         }

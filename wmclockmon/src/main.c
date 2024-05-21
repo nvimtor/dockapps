@@ -507,11 +507,16 @@ static void load_stylepart(const char *filename, StyleDef *opts) {
     while (!feof(file)) {
         char line[MAXSTRLEN + 1], *value;
         int  j, set = False;
-        bzero(line, MAXSTRLEN + 1);
-        fgets(line, MAXSTRLEN, file);
- 
+        size_t n;
+
+        if (!fgets(line, MAXSTRLEN, file))
+            break;
+
         i++;
-        if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
+        n = strlen(line);
+        if (n == 0)
+            continue;
+        if (line[n - 1] == '\n') line[n - 1] = 0;
         if ((line[0] == '#') || (line[0] == 0)) continue;
         value = strchr(line, '=') + 1;
         while ((value[0] == ' ') && (value[0] != 0)) value++;
@@ -1527,10 +1532,16 @@ static Bool load_cfgfile(void) {
     if (ok) {
         if (alarms) free_alrm(&alarms);
         while (! feof(file)) {
-            bzero(line, MAXSTRLEN + 1);
-            fgets(line, MAXSTRLEN, file);
+            size_t n;
+
+            if (!fgets(line, MAXSTRLEN, file))
+                break;
+
             i++;
-            if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
+            n = strlen(line);
+            if (n == 0)
+                continue;
+            if (line[n - 1] == '\n') line[n - 1] = 0;
             if ((line[0] == '#') || (line[0] == 0)) continue;
             value = strchr(line, '=');
             if (! value) continue;
@@ -1644,8 +1655,10 @@ static void load_cal_file(int type) {
     if ((file = fopen(calend_file, "r")) != NULL) {
         while (! feof(file)) {
             char line[MAXSTRLEN + 1];
-            bzero(line, MAXSTRLEN + 1);
-            fgets(line, MAXSTRLEN, file);
+
+            if (!fgets(line, MAXSTRLEN, file))
+                break;
+
             if ( (line[0] != 0) && (strncmp(line, "@ ", 2) == 0) ) {
                 char time[MAXSTRLEN + 1];
                 sscanf(line, "@ %s ", time);
@@ -1675,9 +1688,15 @@ static void reload_alarms(void) {
             printf("Unable to open configuration file \"%s\".\n", config_file);
     } else {
         while (! feof(file)) {
-            bzero(line, MAXSTRLEN + 1);
-            fgets(line, MAXSTRLEN, file);
-            if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
+            size_t n;
+
+            if (!fgets(line, MAXSTRLEN, file))
+                break;
+
+            n = strlen(line);
+            if (n == 0)
+                continue;
+            if (line[n - 1] == '\n') line[n - 1] = 0;
             if ((line[0] == '#') || (line[0] == 0)) continue;
             value = strchr (line, '=') + 1;
             while ((value[0] == ' ') && (value[0] != 0)) value++;
@@ -1699,8 +1718,10 @@ static void show_cal_file(int type) {
     if ((file = fopen(calend_file, "r")) != NULL) {
         while (! feof(file)) {
             char line[MAXSTRLEN + 1];
-            bzero(line, MAXSTRLEN + 1);
-            fgets(line, MAXSTRLEN, file);
+
+            if (!fgets(line, MAXSTRLEN, file))
+                break;
+
             if (line[0] != 0) {
                 int len = data ? strlen(data) : 0;
                 tmp = xmalloc(len + strlen(line) + 1);

@@ -118,10 +118,16 @@ void load_cfgfile(void) {
         return;
     }
     while (! feof(file)) {
-        memset(line, 0, MAXSTRLEN + 1);
-        fgets(line, MAXSTRLEN, file);
+        size_t n;
+
+        if (!fgets(line, MAXSTRLEN, file))
+            break;
+
         i++;
-        if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
+        n = strlen(line);
+        if (n == 0)
+            continue;
+        if (line[n - 1] == '\n') line[n - 1] = 0;
         if ((line[0] == '#') || (line[0] == 0)) continue;
         value = strchr(line, '=') + 1;
         while ((value[0] == ' ') && (value[0] != 0)) value++;
