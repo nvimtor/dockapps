@@ -166,7 +166,7 @@ static void editor_flush(void) {
 
 
 static void editor_fill(int which) {
-    char *filename, *dstr;
+    const char *dstr;
     GtkWidget *label;
     GtkTextIter iter;
 
@@ -175,7 +175,7 @@ static void editor_fill(int which) {
     case YEAR:   label = label_y; break;
     case MONTH:  label = label_m; break;
     }
-    gtk_label_get(GTK_LABEL(label), &dstr);
+    dstr = gtk_label_get_text(GTK_LABEL(label));
     strcpy(daystr, dstr);
     to_button(which);
     editor_flush();
