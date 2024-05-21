@@ -30,26 +30,32 @@ void quit_app(void) {
 }
 
 
-void set_list() {
-    Alarm *alrm = alarms;
-    gchar *text_line[4];
-    int    row = 0, r = 0;
+static void set_list(void) {
 
-    gtk_clist_clear(GTK_CLIST(alarmlist));
-    selected_row = -1;
-    gtk_clist_freeze(GTK_CLIST(alarmlist));
+    GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(alarmlist));
+    GtkListStore *store = GTK_LIST_STORE(model);
+    GtkTreeIter   iter;
+    Alarm        *alrm = alarms;
+
+    gtk_list_store_clear(store);
+
     while (alrm) {
-        text_line[0] = alrm->on ? "ON" : "OFF";
-        text_line[1] = alrm->time ? alrm->time : "ERROR";
-        text_line[2] = alrm->date ? alrm->date : "ALL";
-        text_line[3] = alrm->msg ? alrm->msg : "";
-        row = gtk_clist_append(GTK_CLIST(alarmlist), text_line);
-        gtk_clist_set_row_data(GTK_CLIST(alarmlist), row, (gpointer)alrm);
+
+        gtk_list_store_append(store, &iter);
+        gtk_list_store_set   (store, &iter,
+                              COL_STATUS,  alrm->on   ? "ON"       : "OFF",
+                              COL_HOUR,    alrm->time ? alrm->time : "ERROR",
+                              COL_DAY,     alrm->date ? alrm->date : "ALL",
+                              COL_MESSAGE, alrm->msg  ? alrm->msg  : "",
+                              COL_ALARM,   alrm,
+                              -1);
+
         alrm = alrm->next;
-        r++;
+
     }
-    gtk_clist_thaw(GTK_CLIST(alarmlist));
-    list_unsel_cb();
+
+    clear_alarmlist_selection();
+
 }
 
 void set_values(void) {
@@ -117,13 +123,38 @@ void add_alarm(void) {
 }
 
 
+static Alarm *
+get_alarm(GtkTreeModel **modelp, GtkTreeIter *iterp) {
+
+    GtkTreeSelection *selection;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    Alarm *alrm = NULL;
+
+    selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(alarmlist));
+    if (gtk_tree_selection_get_selected(selection, &model, &iter))
+        gtk_tree_model_get(model, &iter, COL_ALARM, (gpointer) &alrm, -1);
+
+    if (modelp)
+        *modelp = model;
+
+    if (iterp)
+        *iterp = iter;
+
+    return alrm;
+
+}
+
+
 void do_change(void) {
     Alarm *alrm;
     char  *time = NULL, *date = NULL, *ison = NULL, *mesg = NULL, *at;
     char  *tokstr = xstrdup(newalarm);
     char  *toksav = tokstr;
 
-    alrm = (Alarm *)gtk_clist_get_row_data(GTK_CLIST(alarmlist), selected_row);
+    alrm = get_alarm(NULL, NULL);
+    if (!alrm)
+        return;
 
     at = strchr(newalarm, '@');
     if (at) ison = strtok(tokstr, "@");
@@ -146,32 +177,41 @@ void do_change(void) {
 }
 
 
-
 void edit_entry(void) {
     Alarm *alrm;
 
-    alrm = (Alarm *)gtk_clist_get_row_data(GTK_CLIST(alarmlist), selected_row);
+    alrm = get_alarm(NULL, NULL);
+    if (!alrm)
+        return;
+
     edit_dialog("Edit alarm...", alrm->on, alrm->time, alrm->date, alrm->msg, do_change);
 }
 
 
 void switch_onoff(void) {
     Alarm *alrm;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
 
     /* get selected default box */
-    alrm = (Alarm *)gtk_clist_get_row_data(GTK_CLIST(alarmlist), selected_row);
+    alrm = get_alarm(&model, &iter);
+    if (!alrm)
+        return;
     alrm->on = !alrm->on;
     /* set text in both rows */
-    gtk_clist_set_text(GTK_CLIST(alarmlist), selected_row, 0,
-            alrm->on ? "ON" : "OFF");
-    
+    gtk_list_store_set(GTK_LIST_STORE(model), &iter,
+                       COL_STATUS, alrm->on ? "ON" : "OFF",
+                       -1);
 }
 
 
 void remove_alarm(void) {
     Alarm *alrm, *prev;
 
-    alrm = (Alarm *)gtk_clist_get_row_data(GTK_CLIST(alarmlist), selected_row);
+    alrm = get_alarm(NULL, NULL);
+    if (!alrm)
+        return;
+
     prev = alarms;
     while (prev && (prev->next != alrm)) {
         prev = prev->next;

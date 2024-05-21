@@ -24,9 +24,17 @@ extern GtkWidget *wid_locale;
 extern GtkWidget *wid_showcal;
 extern GtkWidget *wid_calalrms;
 
-extern int selected_row;
+typedef enum {
+     COL_STATUS = 0,
+     COL_HOUR,
+     COL_DAY,
+     COL_MESSAGE,
+     COL_ALARM,
+     NUM_COLS
+} AlarmListColumn;
 
-void list_unsel_cb(void);
-void create_mainwindow();
+void clear_alarmlist_selection(void);
+
+void create_mainwindow(void);
 
 #endif

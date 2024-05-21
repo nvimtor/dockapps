@@ -27,29 +27,81 @@ GtkWidget *wid_locale;
 GtkWidget *wid_showcal;
 GtkWidget *wid_calalrms;
 
-int selected_row;
+static const gchar *const clist_titles[] = {" Status ", "  Hour  ", " Day ", " Message "};
 
 static GtkWidget *b_edit;
 static GtkWidget *b_set;
 static GtkWidget *b_remove;
 
-static gint list_sel_cb (GtkCList *clist UNUSED, gint row) {
-    selected_row = row;
-    gtk_widget_set_sensitive(b_edit,   TRUE);
-    gtk_widget_set_sensitive(b_set,    TRUE);
-    gtk_widget_set_sensitive(b_remove, TRUE);
-}
-
-
-void list_unsel_cb (void) {
-    selected_row = -1;
+void clear_alarmlist_selection(void) {
     gtk_widget_set_sensitive(b_edit,   FALSE);
     gtk_widget_set_sensitive(b_set,    FALSE);
     gtk_widget_set_sensitive(b_remove, FALSE);
 }
 
+static void
+alarmlist_selection_changed(void)
+{
+    GtkTreeSelection *selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(alarmlist));
+    gboolean selected = gtk_tree_selection_get_selected(selection, NULL, NULL);
 
-void create_mainwindow() {
+    gtk_widget_set_sensitive(b_edit,   selected);
+    gtk_widget_set_sensitive(b_set,    selected);
+    gtk_widget_set_sensitive(b_remove, selected);
+}
+
+static GtkWidget *
+create_alarmlist (void)
+{
+    GtkTreeView *view;
+    GtkTreeSelection *selection;
+    GtkCellRenderer *renderer;
+    GtkTreeModel *model;
+
+    view = GTK_TREE_VIEW(gtk_tree_view_new());
+
+    selection = gtk_tree_view_get_selection(view);
+    gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
+
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes(view, -1,
+                                                clist_titles[COL_STATUS],
+                                                renderer, "text", COL_STATUS,
+                                                NULL);
+
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes(view, -1,
+                                                clist_titles[COL_HOUR],
+                                                renderer, "text", COL_HOUR,
+                                                NULL);
+
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes(view, -1,
+                                                clist_titles[COL_DAY],
+                                                renderer, "text", COL_DAY,
+                                                NULL);
+
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_insert_column_with_attributes(view, -1,
+                                                clist_titles[COL_MESSAGE],
+                                                renderer, "text", COL_MESSAGE,
+                                                NULL);
+
+    model = GTK_TREE_MODEL(gtk_list_store_new(NUM_COLS,
+                                              G_TYPE_STRING,
+                                              G_TYPE_STRING,
+                                              G_TYPE_STRING,
+                                              G_TYPE_STRING,
+                                              G_TYPE_POINTER));
+
+    gtk_tree_view_set_model(view, model);
+
+    g_object_unref (model);
+
+    return GTK_WIDGET(view);
+}
+
+void create_mainwindow(void) {
     GtkWidget *main_vbox;
     GtkWidget *buttons_hbox;
     GtkWidget *left_vbox;
@@ -62,8 +114,6 @@ void create_mainwindow() {
     GtkWidget *frame;
     GtkWidget *table;
     GtkWidget *notebook;
-    gchar     *clist_titles[4] = {" Status ", "  Hour  ", " Day ", " Message "};
-
 
     /*** FENÊTRE PRINCIPALE ***/
     application = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -233,19 +283,14 @@ void create_mainwindow() {
     /*-- Liste des alarmes --*/
     right_vbox = gtk_vbox_new(FALSE, 1);
 
-
     scrolled_window = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window),
-            GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
+                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
-    alarmlist = gtk_clist_new_with_titles(4, clist_titles);
-    selected_row = -1;
-    g_signal_connect(alarmlist, "select-row",
-                     G_CALLBACK(list_sel_cb), NULL);
-    g_signal_connect(alarmlist, "unselect-row",
-                     G_CALLBACK(list_unsel_cb), NULL);
+    alarmlist = create_alarmlist();
+    g_signal_connect(gtk_tree_view_get_selection(GTK_TREE_VIEW(alarmlist)),
+		     "changed", G_CALLBACK(alarmlist_selection_changed), NULL);
     gtk_container_add(GTK_CONTAINER(scrolled_window), alarmlist);
-    gtk_clist_set_auto_sort(GTK_CLIST(alarmlist), FALSE);
     gtk_widget_show(alarmlist);
 
     gtk_box_pack_start(GTK_BOX(right_vbox), scrolled_window, TRUE, TRUE, 1);
