@@ -1730,10 +1730,9 @@ static char *robust_home() {
     else if (getenv("USER") && getpwnam(getenv("USER")))
         return getpwnam(getenv("USER"))->pw_dir;
     else if (getenv("LOGNAME") && getpwnam(getenv("LOGNAME")))
-        return getpwnam (getenv ("LOGNAME") )->pw_dir;
-    else if ((getuid() != -1) && (getpwuid(getuid())))
+        return getpwnam(getenv("LOGNAME"))->pw_dir;
+    else if (getpwuid(getuid()))
         return getpwuid(getuid())->pw_dir;
     else
         return "/";
 }
-

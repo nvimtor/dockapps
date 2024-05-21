@@ -163,10 +163,10 @@ char *robust_home() {
     if (getenv("HOME"))
         return getenv("HOME");
     else if (getenv("USER") && getpwnam(getenv("USER")))
-        return getpwnam (getenv ("USER") )->pw_dir;
-    else if (getenv ("LOGNAME") && getpwnam(getenv("LOGNAME")))
+        return getpwnam(getenv ("USER"))->pw_dir;
+    else if (getenv("LOGNAME") && getpwnam(getenv("LOGNAME")))
         return getpwnam(getenv("LOGNAME"))->pw_dir;
-    else if ((getuid() != -1) && (getpwuid(getuid())))
+    else if (getpwuid(getuid()))
         return getpwuid(getuid())->pw_dir;
     else
         return "/";
