@@ -75,7 +75,7 @@ static void hide_editor() {
 }
 
 
-static void toggle_displ(GtkWidget *widget, void *data) {
+static void toggle_displ(GtkWidget *widget UNUSED, void *data UNUSED) {
     switch (shown) {
         case 1:
             show_editor();

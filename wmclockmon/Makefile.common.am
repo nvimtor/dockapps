@@ -1,3 +1,9 @@
+if HAVE___ATTRIBUTE__
+AM_CPPFLAGS = -DUNUSED="__attribute__((unused))"
+else
+AM_CPPFLAGS = -DUNUSED=""
+endif
+
 AM_CFLAGS = $(debug_CFLAGS)
 
 INSTALL_PROGRAM += $(SETGID_FLAGS)

@@ -33,11 +33,11 @@ static GtkWidget *b_edit;
 static GtkWidget *b_set;
 static GtkWidget *b_remove;
 
-static gint list_sel_cb (GtkCList *clist,
+static gint list_sel_cb (GtkCList *clist UNUSED,
                          gint row,
-                         gint column,
-                         GdkEventButton *event,
-                         void *data) {
+                         gint column UNUSED,
+                         GdkEventButton *event UNUSED,
+                         void *data UNUSED) {
     selected_row = row;
     gtk_widget_set_sensitive(b_edit,   TRUE);
     gtk_widget_set_sensitive(b_set,    TRUE);
@@ -46,11 +46,11 @@ static gint list_sel_cb (GtkCList *clist,
 }
 
 
-gint list_unsel_cb (GtkCList *clist,
-                           gint row,
-                           gint column,
-                           GdkEventButton *event,
-                           void *data) {
+gint list_unsel_cb (GtkCList *clist UNUSED,
+                           gint row UNUSED,
+                           gint column UNUSED,
+                           GdkEventButton *event UNUSED,
+                           void *data UNUSED) {
     selected_row = -1;
     gtk_widget_set_sensitive(b_edit,   FALSE);
     gtk_widget_set_sensitive(b_set,    FALSE);

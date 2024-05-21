@@ -6,6 +6,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([no-dist-gzip dist-xz])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIRS([m4])
 
 AC_CANONICAL_HOST
 
@@ -14,6 +15,9 @@ AC_PROG_AWK
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
+
+AX_C___ATTRIBUTE__
+AM_CONDITIONAL([HAVE___ATTRIBUTE__], [test "$ax_cv___attribute__" = "yes"])
 
 PKG_CHECK_MODULES([gtk], [gtk+-2.0])
 

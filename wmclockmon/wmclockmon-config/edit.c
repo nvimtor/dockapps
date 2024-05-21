@@ -18,7 +18,7 @@ static GtkWidget *wid_time;
 static GtkWidget *wid_date;
 static GtkWidget *wid_mesg;
 
-void set_data(GtkWidget *widget, GtkWidget *data) {
+void set_data(GtkWidget *widget UNUSED, GtkWidget *data UNUSED) {
     char *wstat = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(wid_status)->entry));
     char *wtime = gtk_entry_get_text(GTK_ENTRY(wid_time));
     char *wdate = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(wid_date)->entry));

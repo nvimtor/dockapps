@@ -105,7 +105,7 @@ void save_datas() {
 }
 
 
-void do_add(GtkWidget *widget, void *data) {
+void do_add(GtkWidget *widget UNUSED, void *data UNUSED) {
     alrm_add(&alarms, newalarm);
     set_list();
     FREE(newalarm);
@@ -117,7 +117,7 @@ void add_alarm() {
 }
 
 
-void do_change(GtkWidget *widget, void *data) {
+void do_change(GtkWidget *widget UNUSED, void *data UNUSED) {
     Alarm *alrm;
     char  *time = NULL, *date = NULL, *ison = NULL, *mesg = NULL, *at;
     char  *tokstr = xstrdup(newalarm);

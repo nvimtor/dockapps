@@ -15,7 +15,7 @@ wmclockmon_SOURCES =   \
 	parts.xpm \
 	letters.xpm
 
-AM_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\""
+AM_CPPFLAGS += -DDATADIR="\"$(pkgdatadir)\""
 
 AM_CFLAGS += $(x11_CFLAGS) $(xext_CFLAGS) $(xpm_CFLAGS)
 
