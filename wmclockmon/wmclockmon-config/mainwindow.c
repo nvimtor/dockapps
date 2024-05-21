@@ -33,29 +33,19 @@ static GtkWidget *b_edit;
 static GtkWidget *b_set;
 static GtkWidget *b_remove;
 
-static gint list_sel_cb (GtkCList *clist UNUSED,
-                         gint row,
-                         gint column UNUSED,
-                         GdkEventButton *event UNUSED,
-                         void *data UNUSED) {
+static gint list_sel_cb (GtkCList *clist UNUSED, gint row) {
     selected_row = row;
     gtk_widget_set_sensitive(b_edit,   TRUE);
     gtk_widget_set_sensitive(b_set,    TRUE);
     gtk_widget_set_sensitive(b_remove, TRUE);
-    return TRUE;
 }
 
 
-gint list_unsel_cb (GtkCList *clist UNUSED,
-                           gint row UNUSED,
-                           gint column UNUSED,
-                           GdkEventButton *event UNUSED,
-                           void *data UNUSED) {
+void list_unsel_cb (void) {
     selected_row = -1;
     gtk_widget_set_sensitive(b_edit,   FALSE);
     gtk_widget_set_sensitive(b_set,    FALSE);
     gtk_widget_set_sensitive(b_remove, FALSE);
-    return TRUE;
 }
 
 
@@ -78,11 +68,9 @@ void create_mainwindow() {
     /*** FENÊTRE PRINCIPALE ***/
     application = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(application), PACKAGE" Config");
-        /*-- Connexion aux signaux --*/
-    gtk_signal_connect(GTK_OBJECT(application), "delete_event",
-                       GTK_SIGNAL_FUNC(quit_app),  NULL);
-    gtk_signal_connect(GTK_OBJECT(application), "destroy",
-                       GTK_SIGNAL_FUNC(quit_app), "WM destroy");
+    /*-- Connexion aux signaux --*/
+    g_signal_connect(application, "delete_event", G_CALLBACK(quit_app), NULL);
+    g_signal_connect(application, "destroy",      G_CALLBACK(quit_app), NULL);
     /*-- Taille de la fenêtre --*/
     gtk_widget_set_size_request(GTK_WIDGET(application), WIN_WIDTH, WIN_HEIGHT);
     gtk_widget_realize(application);
@@ -252,10 +240,10 @@ void create_mainwindow() {
 
     alarmlist = gtk_clist_new_with_titles(4, clist_titles);
     selected_row = -1;
-    gtk_signal_connect(GTK_OBJECT(alarmlist), "select-row",
-            GTK_SIGNAL_FUNC(list_sel_cb), NULL);
-    gtk_signal_connect(GTK_OBJECT(alarmlist), "unselect-row",
-            GTK_SIGNAL_FUNC(list_unsel_cb), NULL);
+    g_signal_connect(alarmlist, "select-row",
+                     G_CALLBACK(list_sel_cb), NULL);
+    g_signal_connect(alarmlist, "unselect-row",
+                     G_CALLBACK(list_unsel_cb), NULL);
     gtk_container_add(GTK_CONTAINER(scrolled_window), alarmlist);
     gtk_clist_set_auto_sort(GTK_CLIST(alarmlist), FALSE);
     gtk_widget_show(alarmlist);
@@ -275,30 +263,26 @@ void create_mainwindow() {
     gtk_widget_show(table);
 
     bouton = gtk_button_new_with_label(" Add alarm ");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(add_alarm), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(add_alarm), NULL);
     gtk_table_attach_defaults(GTK_TABLE(table), bouton, 0, 1, 0, 1);
     gtk_widget_show(bouton);
 
     bouton = gtk_button_new_with_label(" Edit entry ");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(edit_entry), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(edit_entry), NULL);
     gtk_table_attach_defaults(GTK_TABLE(table), bouton, 0, 1, 1, 2);
     gtk_widget_set_sensitive(bouton, FALSE);
     gtk_widget_show(bouton);
     b_edit = bouton;
 
     bouton = gtk_button_new_with_label(" Switch On/Off ");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(switch_onoff), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(switch_onoff), NULL);
     gtk_table_attach_defaults(GTK_TABLE(table), bouton, 1, 2, 1, 2);
     gtk_widget_set_sensitive(bouton, FALSE);
     gtk_widget_show(bouton);
     b_set = bouton;
 
     bouton = gtk_button_new_with_label(" Remove alarm ");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(remove_alarm), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(remove_alarm), NULL);
     gtk_table_attach_defaults(GTK_TABLE(table), bouton, 1, 2, 0, 1);
     gtk_widget_set_sensitive(bouton, FALSE);
     gtk_widget_show(bouton);
@@ -324,18 +308,15 @@ void create_mainwindow() {
 
 
     bouton = gtk_button_new_with_label(" Save ");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(save_datas), NULL);
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(quit_app), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(save_datas), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(quit_app),   NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), bouton, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_grab_default(GTK_WIDGET(bouton));
     gtk_widget_show(bouton);
 
     bouton = gtk_button_new_with_label(" Cancel ");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
-                       GTK_SIGNAL_FUNC(quit_app), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(quit_app), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), bouton, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_show(bouton);

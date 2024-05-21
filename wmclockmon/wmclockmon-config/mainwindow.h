@@ -26,11 +26,7 @@ extern GtkWidget *wid_calalrms;
 
 extern int selected_row;
 
-gint list_unsel_cb (GtkCList *clist,
-        gint row,
-        gint column,
-        GdkEventButton *event,
-        void *data);
+void list_unsel_cb(void);
 void create_mainwindow();
 
 #endif

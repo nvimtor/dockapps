@@ -49,7 +49,7 @@ void set_list() {
         r++;
     }
     gtk_clist_thaw(GTK_CLIST(alarmlist));
-    list_unsel_cb(GTK_CLIST(alarmlist), 0, 0, NULL, NULL);
+    list_unsel_cb();
 }
 
 void set_values(void) {
@@ -105,7 +105,7 @@ void save_datas(void) {
 }
 
 
-void do_add(GtkWidget *widget UNUSED, void *data UNUSED) {
+void do_add(void) {
     alrm_add(&alarms, newalarm);
     set_list();
     FREE(newalarm);
@@ -117,7 +117,7 @@ void add_alarm(void) {
 }
 
 
-void do_change(GtkWidget *widget UNUSED, void *data UNUSED) {
+void do_change(void) {
     Alarm *alrm;
     char  *time = NULL, *date = NULL, *ison = NULL, *mesg = NULL, *at;
     char  *tokstr = xstrdup(newalarm);

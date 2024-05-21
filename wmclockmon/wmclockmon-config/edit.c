@@ -46,7 +46,7 @@ void edit_dialog(const char *title,
                  const char *atime,
                  const char *adate,
                  const char *amesg,
-                 void (*f_ok)(GtkWidget *, void *)) {
+                 void (*f_ok)(void)) {
 
     GtkWidget *dialog;
     GtkWidget *bouton;
@@ -58,23 +58,16 @@ void edit_dialog(const char *title,
     FREE(newalarm);
     dialog = gtk_dialog_new();
     gtk_window_set_title(GTK_WINDOW(dialog), title);
-    gtk_signal_connect(GTK_OBJECT(dialog), "delete_event",
-                       GTK_SIGNAL_FUNC(gtk_widget_destroy),
-                       NULL);
-    gtk_signal_connect(GTK_OBJECT(dialog), "destroy", 
-                       GTK_SIGNAL_FUNC(gtk_widget_destroy), 
-                       NULL);
+    g_signal_connect(dialog, "delete_event",
+                     G_CALLBACK(gtk_widget_destroy), NULL);
+    g_signal_connect(dialog, "destroy",
+                     G_CALLBACK(gtk_widget_destroy), NULL);
 
     bouton = gtk_button_new_with_label("Ok");
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked", 
-                       GTK_SIGNAL_FUNC(set_data), 
-                       NULL);
-    gtk_signal_connect(GTK_OBJECT(bouton), "clicked", 
-                       GTK_SIGNAL_FUNC(f_ok), 
-                       NULL);
-    gtk_signal_connect_object(GTK_OBJECT(bouton), "clicked",
-                              GTK_SIGNAL_FUNC(gtk_widget_destroy),
-                              GTK_OBJECT(dialog));
+    g_signal_connect(bouton, "clicked", G_CALLBACK(set_data), NULL);
+    g_signal_connect(bouton, "clicked", G_CALLBACK(f_ok),     NULL);
+    g_signal_connect_swapped(bouton, "clicked",
+                             G_CALLBACK(gtk_widget_destroy), dialog);
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
                        bouton, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
@@ -82,9 +75,8 @@ void edit_dialog(const char *title,
     gtk_widget_show(bouton);
 
     bouton = gtk_button_new_with_label("Cancel");
-    gtk_signal_connect_object(GTK_OBJECT(bouton), "clicked",
-                              GTK_SIGNAL_FUNC(gtk_widget_destroy),
-                              GTK_OBJECT(dialog));
+    g_signal_connect_swapped(bouton, "clicked",
+                             G_CALLBACK(gtk_widget_destroy), dialog);
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
                        bouton, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);

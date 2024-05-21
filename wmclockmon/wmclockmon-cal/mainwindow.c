@@ -75,7 +75,7 @@ static void hide_editor(void) {
 }
 
 
-static void toggle_displ(GtkWidget *widget UNUSED, void *data UNUSED) {
+static void toggle_displ(void) {
     switch (shown) {
         case 1:
             show_editor();
@@ -325,11 +325,9 @@ void create_mainwindow(void) {
     /*** FENÊTRE PRINCIPALE ***/
     application = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(application), PACKAGE" Calendar");
-        /*-- Connexion aux signaux --*/
-    gtk_signal_connect(GTK_OBJECT(application), "delete_event",
-                       GTK_SIGNAL_FUNC(quit_app),  NULL);
-    gtk_signal_connect(GTK_OBJECT(application), "destroy",
-                       GTK_SIGNAL_FUNC(quit_app), "WM destroy");
+    /*-- Connexion aux signaux --*/
+    g_signal_connect(application, "delete_event", G_CALLBACK(quit_app), NULL);
+    g_signal_connect(application, "destroy",      G_CALLBACK(quit_app), NULL);
     /*-- Taille de la fenêtre --*/
     gtk_widget_set_size_request(GTK_WIDGET(application), WIN_WIDTH, WIN_HEIGHT);
     gtk_widget_realize(application);
@@ -350,12 +348,11 @@ void create_mainwindow(void) {
     gtk_calendar_select_day(GTK_CALENDAR(calendar), timeinfos->tm_mday);
     mark_days();
     gtk_box_pack_start(GTK_BOX(main_vbox), calendar, TRUE, TRUE, 1);
-    gtk_signal_connect(GTK_OBJECT(calendar), "day-selected-double-click",
-            GTK_SIGNAL_FUNC(cal_click), NULL);
-    gtk_signal_connect(GTK_OBJECT(calendar), "day-selected-double-click",
-            GTK_SIGNAL_FUNC(toggle_displ), NULL);
-    gtk_signal_connect(GTK_OBJECT(calendar), "month-changed",
-            GTK_SIGNAL_FUNC(mark_days), NULL);
+    g_signal_connect(calendar, "day-selected-double-click",
+                     G_CALLBACK(cal_click), NULL);
+    g_signal_connect(calendar, "day-selected-double-click",
+                     G_CALLBACK(toggle_displ), NULL);
+    g_signal_connect(calendar, "month-changed", G_CALLBACK(mark_days), NULL);
     gtk_widget_show(calendar);
 
     edit = gtk_text_view_new();
@@ -371,8 +368,7 @@ void create_mainwindow(void) {
 
 
     button_u = gtk_toggle_button_new();
-    gtk_signal_connect(GTK_OBJECT(button_u), "clicked",
-            GTK_SIGNAL_FUNC(set_text_u), NULL);
+    g_signal_connect(button_u, "clicked", G_CALLBACK(set_text_u), NULL);
     gtk_box_pack_start(GTK_BOX(text_buttons), button_u, TRUE, TRUE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button_u), TRUE);
     gtk_widget_show(button_u);
@@ -382,8 +378,7 @@ void create_mainwindow(void) {
 
 
     button_y = gtk_toggle_button_new();
-    gtk_signal_connect(GTK_OBJECT(button_y), "clicked",
-            GTK_SIGNAL_FUNC(set_text_y), NULL);
+    g_signal_connect(button_y, "clicked", G_CALLBACK(set_text_y), NULL);
     gtk_box_pack_start(GTK_BOX(text_buttons), button_y, TRUE, TRUE, 0);
     gtk_widget_show(button_y);
     label_y = gtk_label_new(" Yearly ");
@@ -392,8 +387,7 @@ void create_mainwindow(void) {
 
 
     button_m = gtk_toggle_button_new();
-    gtk_signal_connect(GTK_OBJECT(button_m), "clicked",
-            GTK_SIGNAL_FUNC(set_text_m), NULL);
+    g_signal_connect(button_m, "clicked", G_CALLBACK(set_text_m), NULL);
     gtk_box_pack_start(GTK_BOX(text_buttons), button_m, TRUE, TRUE, 0);
     gtk_widget_show(button_m);
     label_m = gtk_label_new(" Monthly ");
@@ -409,8 +403,7 @@ void create_mainwindow(void) {
 
 
     closewindow = gtk_button_new_with_label(" Close ");
-    gtk_signal_connect(GTK_OBJECT(closewindow), "clicked",
-            GTK_SIGNAL_FUNC(quit_app), NULL);
+    g_signal_connect(closewindow, "clicked", G_CALLBACK(quit_app), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), closewindow, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(closewindow), TRUE);
     gtk_widget_grab_default(GTK_WIDGET(closewindow));
@@ -418,22 +411,19 @@ void create_mainwindow(void) {
 
 
     save = gtk_button_new_with_label(" Save ");
-    gtk_signal_connect(GTK_OBJECT(save), "clicked",
-            GTK_SIGNAL_FUNC(save_datas), NULL);
+    g_signal_connect(save, "clicked", G_CALLBACK(save_datas), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), save, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(save), TRUE);
 
 
     delete = gtk_button_new_with_label(" Delete ");
-    gtk_signal_connect(GTK_OBJECT(delete), "clicked",
-            GTK_SIGNAL_FUNC(delete_file), NULL);
+    g_signal_connect(delete, "clicked", G_CALLBACK(delete_file), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), delete, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(delete), TRUE);
 
 
     cancel = gtk_button_new_with_label(" Close ");
-    gtk_signal_connect(GTK_OBJECT(cancel), "clicked",
-            GTK_SIGNAL_FUNC(toggle_displ), NULL);
+    g_signal_connect(cancel, "clicked", G_CALLBACK(toggle_displ), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), cancel, TRUE, TRUE, 0);
     gtk_widget_set_can_default(GTK_WIDGET(cancel), TRUE);
 
