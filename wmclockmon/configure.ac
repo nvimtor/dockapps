@@ -19,7 +19,7 @@ AC_PROG_LN_S
 AX_C___ATTRIBUTE__
 AM_CONDITIONAL([HAVE___ATTRIBUTE__], [test "$ax_cv___attribute__" = "yes"])
 
-PKG_CHECK_MODULES([gtk], [gtk+-2.0])
+PKG_CHECK_MODULES([gtk], [gtk+-3.0])
 
 dnl ===========================================
 dnl             Stuff that uses X
