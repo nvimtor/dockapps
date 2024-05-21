@@ -112,7 +112,7 @@ void create_mainwindow(void) {
     GtkWidget *hbox;
     GtkWidget *label;
     GtkWidget *frame;
-    GtkWidget *table;
+    GtkWidget *grid;
     GtkWidget *notebook;
 
     /*** FENÊTRE PRINCIPALE ***/
@@ -204,36 +204,38 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(left_vbox), frame, FALSE, TRUE, 1);
     gtk_widget_show(frame);
     
-    table = gtk_table_new(2, 3, FALSE);
-    gtk_container_set_border_width(GTK_CONTAINER(table), 2);
-    gtk_container_add(GTK_CONTAINER(frame), table);
-    gtk_widget_show(table);
+    grid = gtk_grid_new();
+    gtk_grid_set_row_homogeneous(GTK_GRID(grid), TRUE);
+    gtk_grid_set_column_homogeneous(GTK_GRID(grid), TRUE);
+    gtk_container_set_border_width(GTK_CONTAINER(grid), 2);
+    gtk_container_add(GTK_CONTAINER(frame), grid);
+    gtk_widget_show(grid);
 
     label = gtk_label_new("Style directory : ");
     gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
-    gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
+    gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);
     gtk_widget_show(label);
     
     wid_styledir = gtk_entry_new();
-    gtk_table_attach_defaults(GTK_TABLE(table), wid_styledir, 1, 2, 0, 1);
+    gtk_grid_attach(GTK_GRID(grid), wid_styledir, 1, 0, 1, 1);
     gtk_widget_show(wid_styledir);
 
     label = gtk_label_new("Style : ");
     gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
-    gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 1, 2);
+    gtk_grid_attach(GTK_GRID(grid), label, 0, 1, 1, 1);
     gtk_widget_show(label);
     
     wid_stylename = gtk_entry_new();
-    gtk_table_attach_defaults(GTK_TABLE(table), wid_stylename, 1, 2, 1, 2);
+    gtk_grid_attach(GTK_GRID(grid), wid_stylename, 1, 1, 1, 1);
     gtk_widget_show(wid_stylename);
 
     label = gtk_label_new("Color : ");
     gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
-    gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 2, 3);
+    gtk_grid_attach(GTK_GRID(grid), label, 0, 2, 1, 1);
     gtk_widget_show(label);
     
     wid_color = gtk_entry_new();
-    gtk_table_attach_defaults(GTK_TABLE(table), wid_color, 1, 2, 2, 3);
+    gtk_grid_attach(GTK_GRID(grid), wid_color, 1, 2, 1, 1);
     gtk_widget_show(wid_color);
 
     /*--- Frame 3 ---*/
@@ -302,33 +304,35 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(right_vbox), frame, FALSE, TRUE, 1);
     gtk_widget_show(frame);
 
-    table = gtk_table_new(2, 2, FALSE);
-    gtk_container_set_border_width(GTK_CONTAINER(table), 2);
-    gtk_container_add(GTK_CONTAINER(frame), table);
-    gtk_widget_show(table);
+    grid = gtk_grid_new();
+    gtk_grid_set_row_homogeneous(GTK_GRID(grid), TRUE);
+    gtk_grid_set_column_homogeneous(GTK_GRID(grid), TRUE);
+    gtk_container_set_border_width(GTK_CONTAINER(grid), 2);
+    gtk_container_add(GTK_CONTAINER(frame), grid);
+    gtk_widget_show(grid);
 
     bouton = gtk_button_new_with_label(" Add alarm ");
     g_signal_connect(bouton, "clicked", G_CALLBACK(add_alarm), NULL);
-    gtk_table_attach_defaults(GTK_TABLE(table), bouton, 0, 1, 0, 1);
+    gtk_grid_attach(GTK_GRID(grid), bouton, 0, 0, 1, 1);
     gtk_widget_show(bouton);
 
     bouton = gtk_button_new_with_label(" Edit entry ");
     g_signal_connect(bouton, "clicked", G_CALLBACK(edit_entry), NULL);
-    gtk_table_attach_defaults(GTK_TABLE(table), bouton, 0, 1, 1, 2);
+    gtk_grid_attach(GTK_GRID(grid), bouton, 0, 1, 1, 1);
     gtk_widget_set_sensitive(bouton, FALSE);
     gtk_widget_show(bouton);
     b_edit = bouton;
 
     bouton = gtk_button_new_with_label(" Switch On/Off ");
     g_signal_connect(bouton, "clicked", G_CALLBACK(switch_onoff), NULL);
-    gtk_table_attach_defaults(GTK_TABLE(table), bouton, 1, 2, 1, 2);
+    gtk_grid_attach(GTK_GRID(grid), bouton, 1, 1, 1, 1);
     gtk_widget_set_sensitive(bouton, FALSE);
     gtk_widget_show(bouton);
     b_set = bouton;
 
     bouton = gtk_button_new_with_label(" Remove alarm ");
     g_signal_connect(bouton, "clicked", G_CALLBACK(remove_alarm), NULL);
-    gtk_table_attach_defaults(GTK_TABLE(table), bouton, 1, 2, 0, 1);
+    gtk_grid_attach(GTK_GRID(grid), bouton, 1, 0, 1, 1);
     gtk_widget_set_sensitive(bouton, FALSE);
     gtk_widget_show(bouton);
     b_remove = bouton;
