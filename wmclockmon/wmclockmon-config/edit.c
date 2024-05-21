@@ -42,11 +42,12 @@ void set_data(GtkWidget *widget UNUSED, GtkWidget *data UNUSED) {
 
 
 void edit_dialog(const char *title,
-        int on,
-        const char *atime,
-        const char *adate,
-        const char *amesg,
-        void *f_ok) {
+                 int on,
+                 const char *atime,
+                 const char *adate,
+                 const char *amesg,
+                 void (*f_ok)(GtkWidget *, void *)) {
+
     GtkWidget *dialog;
     GtkWidget *bouton;
     GtkWidget *label;
