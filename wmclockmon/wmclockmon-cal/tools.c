@@ -36,17 +36,15 @@ char *xstrdup(const char *string) {
 }
 
 
-int getbool(char *value) {
-    int i;
-    for (i = 0 ; value[i] ; i++) value[i] = tolower(value[i]);
+int getbool(const char *value) {
     if (strcmp(value, "0") == 0) return FALSE;
     if (strcmp(value, "1") == 0) return TRUE;
-    if (strcmp(value, "true") == 0) return TRUE;
-    if (strcmp(value, "false") == 0) return FALSE;
-    if (strcmp(value, "yes") == 0) return TRUE;
-    if (strcmp(value, "no") == 0) return FALSE;
-    if (strcmp(value, "on") == 0) return TRUE;
-    if (strcmp(value, "off") == 0) return FALSE;
+    if (strcasecmp(value, "true") == 0) return TRUE;
+    if (strcasecmp(value, "false") == 0) return FALSE;
+    if (strcasecmp(value, "yes") == 0) return TRUE;
+    if (strcasecmp(value, "no") == 0) return FALSE;
+    if (strcasecmp(value, "on") == 0) return TRUE;
+    if (strcasecmp(value, "off") == 0) return FALSE;
     printf("Error in converting \"%s\" to boolean value.\n", value);
     return FALSE;
 }
