@@ -87,8 +87,7 @@ void edit_dialog(const char *title,
     g_signal_connect(bouton, "clicked", G_CALLBACK(f_ok),     NULL);
     g_signal_connect_swapped(bouton, "clicked",
                              G_CALLBACK(gtk_widget_destroy), dialog);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
-                       bouton, TRUE, TRUE, 0);
+    gtk_dialog_add_action_widget(GTK_DIALOG(dialog), bouton, GTK_RESPONSE_OK);
     gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_grab_default(GTK_WIDGET(bouton));
     gtk_widget_show(bouton);
@@ -96,8 +95,7 @@ void edit_dialog(const char *title,
     bouton = gtk_button_new_with_label("Cancel");
     g_signal_connect_swapped(bouton, "clicked",
                              G_CALLBACK(gtk_widget_destroy), dialog);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
-                       bouton, TRUE, TRUE, 0);
+    gtk_dialog_add_action_widget(GTK_DIALOG(dialog), bouton, GTK_RESPONSE_CANCEL);
     gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_show(bouton);
 
