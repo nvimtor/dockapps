@@ -1,3 +1,95 @@
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/edit.c: add missing `const` qualifiers
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c: remove `bzero` call
+
+	The function was superseded by `memset` aeons ago, and the call is
+	not necessary.
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* src/main.c, wmclockmon-cal/mainwindow.c, wmclockmon-config/tools.c:
+	handle fgets NULL returns and zero-length lines
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* src/main.c, wmclockmon-cal/main.c, wmclockmon-cal/main.h,
+	wmclockmon-cal/mainwindow.c, wmclockmon-cal/tools.c,
+	wmclockmon-cal/tools.h,	wmclockmon-config/actions.c,
+	wmclockmon-config/actions.h, wmclockmon-config/main.c,
+	wmclockmon-config/tools.c, wmclockmon-config/tools.h:
+	fix pre-ANSI void-parameter function declarations
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/edit.c, wmclockmon-config/edit.h:
+	fix function-pointer <-> void-pointer conversions
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* Makefile.am, Makefile.common.am, configure.ac:
+	m4/ax_c___attribute__.m4, src/Makefile.am,
+	wmclockmon-cal/mainwindow.c, wmclockmon-config/actions.c,
+	wmclockmon-config/edit.c, wmclockmon-config/mainwindow.c:
+	fix unused parameter warnings
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* src/main.c, wmclockmon-cal/tools.c, wmclockmon-config/tools.c:
+	drop `getuid()` error checks
+
+	It is always successful.
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* src/main.c: add missing initializers
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* src/main.c: fix buffer overrun
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/actions.c, wmclockmon-config/tools.c: properly fix
+	allocating and freeing of `command`, `light_color` and the other
+	GtkEntry strings
+
+	Instead of sometimes allocating memory and sometimes storing the
+	values return by `gtk_entry_get_text()`, always storing allocated
+	memory and unconditionally free it.  Do this for all the entry
+	strings.
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* src/dockapp.c, src/main.c, wmclockmon-cal/mainwindow.c:
+	fix mismatched signedness
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c: fix assignment
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/actions.c: fix conditional
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/tools.c, wmclockmon-cal/tools.h:
+	wmclockmon-config/tools.c, wmclockmon-config/tools.h:
+	update `getbool` not to modify its argument
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* src/dockapp.c, src/main.c, wmclockmon-cal/mainwindow.c,
+	wmclockmon-cal/mainwindow.h, wmclockmon-cal/tools.c,
+	wmclockmon-cal/tools.h, wmclockmon-config/Makefile.am,
+	wmclockmon-config/actions.c, wmclockmon-config/dialogs.c,
+	wmclockmon-config/dialogs.h, wmclockmon-config/tools.c,
+	wmclockmon-config/tools.h: remove unused code
+
 2024-05-19  Jeremy Sowden <jeremy@azazel.net>
 
 	* .gitignore, configure.ac: use `AC_CONFIG_AUX_DIR`
