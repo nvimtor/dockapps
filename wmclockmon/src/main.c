@@ -1361,7 +1361,7 @@ static int my_system(char *cmd, char *opt) {
     if (pid == 0) {
         pid = fork();
         if (pid == 0) {
-            char *argv[3];
+            char *argv[4];
             char *thiscommand = xmalloc(strlen(cmd)
                     + (opt ? strlen(opt) + 4 : 1));
             sprintf(thiscommand, "%s %s%s%s", cmd,
