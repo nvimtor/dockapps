@@ -341,8 +341,7 @@ void create_mainwindow(void) {
     calendar = gtk_calendar_new();
     gtk_calendar_set_display_options(GTK_CALENDAR(calendar),
                                      GTK_CALENDAR_SHOW_HEADING   |
-                                     GTK_CALENDAR_SHOW_DAY_NAMES |
-                                     GTK_CALENDAR_WEEK_START_MONDAY);
+                                     GTK_CALENDAR_SHOW_DAY_NAMES);
     gtk_calendar_select_month(GTK_CALENDAR(calendar),
                               timeinfos->tm_mon, timeinfos->tm_year + 1900);
     gtk_calendar_select_day(GTK_CALENDAR(calendar), timeinfos->tm_mday);
