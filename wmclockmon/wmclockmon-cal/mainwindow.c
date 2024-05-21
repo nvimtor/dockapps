@@ -341,12 +341,12 @@ void create_mainwindow(void) {
     gtk_widget_show(main_vbox);
 
     calendar = gtk_calendar_new();
-    gtk_calendar_display_options(GTK_CALENDAR(calendar),
-            GTK_CALENDAR_SHOW_HEADING   |
-            GTK_CALENDAR_SHOW_DAY_NAMES |
-            GTK_CALENDAR_WEEK_START_MONDAY);
+    gtk_calendar_set_display_options(GTK_CALENDAR(calendar),
+                                     GTK_CALENDAR_SHOW_HEADING   |
+                                     GTK_CALENDAR_SHOW_DAY_NAMES |
+                                     GTK_CALENDAR_WEEK_START_MONDAY);
     gtk_calendar_select_month(GTK_CALENDAR(calendar),
-            timeinfos->tm_mon, timeinfos->tm_year + 1900);
+                              timeinfos->tm_mon, timeinfos->tm_year + 1900);
     gtk_calendar_select_day(GTK_CALENDAR(calendar), timeinfos->tm_mday);
     mark_days();
     gtk_box_pack_start(GTK_BOX(main_vbox), calendar, TRUE, TRUE, 1);
