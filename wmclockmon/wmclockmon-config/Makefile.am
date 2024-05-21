@@ -7,8 +7,6 @@ wmclockmon_config_SOURCES =   \
 	actions.h \
 	configfile.h \
 	defines.h \
-	dialogs.c \
-	dialogs.h \
 	edit.c \
 	edit.h \
 	main.c \

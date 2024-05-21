@@ -171,10 +171,9 @@ static void editor_fill(int which) {
     GtkTextIter iter;
 
     switch (which) {
-        case UNIQUE: label = label_u; break;
-        case YEAR:   label = label_y; break;
-        case MONTH:  label = label_m; break;
-        default:     break;
+    case UNIQUE: label = label_u; break;
+    case YEAR:   label = label_y; break;
+    case MONTH:  label = label_m; break;
     }
     gtk_label_get(GTK_LABEL(label), &dstr);
     strcpy(daystr, dstr);

@@ -251,14 +251,12 @@ static void parse_arguments(int argc, char **argv);
 static void print_help(char *prog);
 static void time_update();
 static Bool raise_alarm();
-static Bool fexist(const char *filename);
 static Bool filestat(const char *filename, time_t *time, int mode);
 static int  my_system(char *cmd, char *opt);
 void *xmalloc(size_t size);
 char *xstrdup(const char *string);
 static void alrm_add(Alarm **list, const char *value);
 static void free_alrm(Alarm **list);
-static int nb_alrm(Alarm *list);
 static Bool alarms_on(Alarm *list);
 static void switch_alarms(Alarm *list);
 static Bool getbool(char *value);
@@ -271,7 +269,6 @@ static void reload_alarms();
 static void show_cal_file(int type);
 static void show_cal();
 static char *robust_home();
-static void signal_reload();
 
 
 
@@ -1332,16 +1329,6 @@ static Bool raise_alarm() {
 }
 
 
-static Bool fexist(const char *filename) {
-    FILE           *file;
-
-    if ((file = fopen(filename, "r")) == NULL) return False;
-    fclose(file);
-
-    return True;
-}
-
-
 static Bool filestat(const char *filename, time_t *time, int mode) {
     struct stat s;
     time_t      t = *time;
@@ -1473,17 +1460,6 @@ static void free_alrm(Alarm **list) {
         lst = next;
     }
     *list = NULL;
-}
-
-
-static int nb_alrm(Alarm *list) {
-    Alarm *alrm = list;
-    int      n = 0;
-    while (alrm) {
-        n++;
-        alrm = alrm->next;
-    }
-    return n;
 }
 
 
@@ -1690,7 +1666,6 @@ static void load_calalrms() {
 
 static void reload_alarms() {
     FILE *file;
-    int  i = 0;
     char line[MAXSTRLEN + 1];
     char *value;
 
@@ -1702,7 +1677,6 @@ static void reload_alarms() {
         while (! feof(file)) {
             bzero(line, MAXSTRLEN + 1);
             fgets(line, MAXSTRLEN, file);
-            i++;
             if (line[strlen(line) - 1] == '\n') line[strlen(line) - 1] = 0;
             if ((line[0] == '#') || (line[0] == 0)) continue;
             value = strchr (line, '=') + 1;

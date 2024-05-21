@@ -16,16 +16,6 @@
 #include <sys/types.h>
 
 
-int fexist(const char *filename) {
-    FILE *file;
-
-    if ( (file = fopen(filename, "r") ) == NULL) return FALSE;
-    fclose(file);
-
-    return TRUE;
-}
-
-
 void *xmalloc(size_t size) {
     void *ret = malloc(size);
     if (ret == NULL) {

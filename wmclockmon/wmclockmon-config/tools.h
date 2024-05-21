@@ -10,10 +10,8 @@
 
 #define FREE(data) {if (data) free (data); data = NULL;}
 
-int   fexist(const char *filename);
 void  alrm_add(Alarm **list, const char *value);
 void  free_alrm(Alarm **list);
-int   nb_alrm(Alarm *list);
 void *xmalloc(size_t size);
 char *xstrdup(const char *string);
 int   getbool(char *value);

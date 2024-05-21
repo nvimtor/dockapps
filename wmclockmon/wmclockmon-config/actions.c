@@ -13,7 +13,6 @@
 #include <sys/types.h>
 #include "defines.h"
 #include "variables.h"
-#include "dialogs.h"
 #include "mainwindow.h"
 #include "tools.h"
 #include "edit.h"

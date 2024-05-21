@@ -22,16 +22,6 @@ int    free_command;
 int    time_mode;
 char  *msgcmd;
 
-int fexist(const char *filename) {
-    FILE *file;
-
-    if ( (file = fopen(filename, "r") ) == NULL) return FALSE;
-    fclose(file);
-
-    return TRUE;
-}
-
-
 void alrm_add(Alarm **list, const char *value) {
     Alarm *lst = *list;
     int    ok  = TRUE;
@@ -82,19 +72,6 @@ void free_alrm(Alarm **list) {
     }
     *list = NULL;
 }
-
-
-int nb_alrm(Alarm *list) {
-    Alarm *alrm = list;
-    int      n = 0;
-    while (alrm) {
-        n++;
-        alrm = alrm->next;
-    }
-    return n;
-}
-
-
 
 
 void *xmalloc(size_t size) {
