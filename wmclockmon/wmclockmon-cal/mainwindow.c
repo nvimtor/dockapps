@@ -333,7 +333,7 @@ void create_mainwindow(void) {
     gtk_widget_realize(application);
 
     /*** Zone principale de placement des widgets***/
-    main_vbox = gtk_vbox_new(FALSE, 1);
+    main_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
     gtk_container_add(GTK_CONTAINER(application), main_vbox);
     gtk_widget_show(main_vbox);
@@ -362,7 +362,7 @@ void create_mainwindow(void) {
 
 
     /*** BOUTONS DE CHANGEMENT DE TEXTE ***/
-    text_buttons = gtk_hbox_new(FALSE, 1);
+    text_buttons = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_box_pack_start(GTK_BOX(main_vbox), text_buttons, FALSE, TRUE, 1);
 
 
@@ -396,7 +396,7 @@ void create_mainwindow(void) {
 
 
     /*** BOUTONS DE SAUVEGARDE ET ANNULATION ***/
-    buttons_hbox = gtk_hbox_new(FALSE, 1);
+    buttons_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_box_pack_start(GTK_BOX(main_vbox), buttons_hbox, FALSE, TRUE, 1);
     gtk_widget_show(buttons_hbox);
 

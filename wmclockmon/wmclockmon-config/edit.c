@@ -104,12 +104,12 @@ void edit_dialog(const char *title,
     gtk_container_set_border_width(GTK_CONTAINER
                                    (gtk_dialog_get_content_area(GTK_DIALOG(dialog))), 6);
 
-    hbox = gtk_hbox_new(FALSE, 1);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), hbox);
     gtk_widget_show(hbox);
 
     /* STATUS */
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_add(GTK_CONTAINER(hbox), vbox);
     gtk_widget_show(vbox);
 
@@ -126,7 +126,7 @@ void edit_dialog(const char *title,
     gtk_combo_box_set_active(GTK_COMBO_BOX(wid_status), on ? 0 : 1);
 
     /* HOUR */
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_add(GTK_CONTAINER(hbox), vbox);
     gtk_widget_show(vbox);
 
@@ -142,7 +142,7 @@ void edit_dialog(const char *title,
 
 
     /* DAY */
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_add(GTK_CONTAINER(hbox), vbox);
     gtk_widget_show(vbox);
 
@@ -168,7 +168,7 @@ void edit_dialog(const char *title,
 			       set_active_date, (void *) adate);
     
     /* MESSAGE */
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), vbox);
     gtk_widget_show(vbox);
 

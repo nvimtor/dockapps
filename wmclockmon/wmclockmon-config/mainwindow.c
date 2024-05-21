@@ -126,7 +126,7 @@ void create_mainwindow(void) {
     gtk_widget_realize(application);
 
     /*** Zone principale de placement des widgets***/
-    main_vbox = gtk_vbox_new(FALSE, 1);
+    main_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
     gtk_container_add(GTK_CONTAINER(application), main_vbox);
     gtk_widget_show(main_vbox);
@@ -137,7 +137,7 @@ void create_mainwindow(void) {
     notebook = gtk_notebook_new();
 
     /*-- Zones des données simples --*/
-    left_vbox = gtk_vbox_new(FALSE, 1);
+    left_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
 
 
     /*--- Frame 1 ---*/
@@ -146,11 +146,11 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(left_vbox), frame, FALSE, TRUE, 1);
     gtk_widget_show(frame);
 
-    hbox = gtk_hbox_new(FALSE, 1);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_container_add(GTK_CONTAINER(frame), hbox);
     gtk_widget_show(hbox);
 
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 1);
     gtk_widget_show(vbox);
 
@@ -166,7 +166,7 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(vbox), wid_h12, FALSE, TRUE, 1);
     gtk_widget_show(wid_h12);
 
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 1);
     gtk_widget_show(vbox);
 
@@ -182,7 +182,7 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(vbox), wid_calalrms, FALSE, TRUE, 1);
     gtk_widget_show(wid_calalrms);
 
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 1);
     gtk_widget_show(vbox);
 
@@ -242,11 +242,11 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(left_vbox), frame, FALSE, FALSE, 1);
     gtk_widget_show(frame);
 
-    vbox = gtk_vbox_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     gtk_container_add(GTK_CONTAINER(frame), vbox);
     gtk_widget_show(vbox);
 
-    hbox = gtk_hbox_new(FALSE, 1);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 1);
     gtk_widget_show(hbox);
 
@@ -259,7 +259,7 @@ void create_mainwindow(void) {
     gtk_box_pack_start(GTK_BOX(hbox), wid_command, TRUE, TRUE, 1);
     gtk_widget_show(wid_command);
 
-    hbox = gtk_hbox_new(FALSE, 1);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 1);
     gtk_widget_show(hbox);
 
@@ -281,7 +281,7 @@ void create_mainwindow(void) {
 
 
     /*-- Liste des alarmes --*/
-    right_vbox = gtk_vbox_new(FALSE, 1);
+    right_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
 
     scrolled_window = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window),
@@ -347,7 +347,7 @@ void create_mainwindow(void) {
 
 
     /*** BOUTONS DE SAUVEGARDE ET ANNULATION ***/
-    buttons_hbox = gtk_hbox_new(FALSE, 1);
+    buttons_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     gtk_box_pack_start(GTK_BOX(main_vbox), buttons_hbox, FALSE, TRUE, 1);
     gtk_widget_show(buttons_hbox);
 
