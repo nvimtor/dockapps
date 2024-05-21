@@ -112,7 +112,8 @@ void edit_dialog(const char *title,
     gtk_widget_show(vbox);
 
     label = gtk_label_new("Status");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 6);
     gtk_widget_show(label);
 
@@ -129,7 +130,8 @@ void edit_dialog(const char *title,
     gtk_widget_show(vbox);
 
     label = gtk_label_new("Hour");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 6);
     gtk_widget_show(label);
 
@@ -145,7 +147,8 @@ void edit_dialog(const char *title,
     gtk_widget_show(vbox);
 
     label = gtk_label_new("Day");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 6);
     gtk_widget_show(label);
 
@@ -171,7 +174,8 @@ void edit_dialog(const char *title,
     gtk_widget_show(vbox);
 
     label = gtk_label_new("Message");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 6);
     gtk_widget_show(label);
 

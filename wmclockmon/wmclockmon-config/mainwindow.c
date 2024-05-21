@@ -212,7 +212,8 @@ void create_mainwindow(void) {
     gtk_widget_show(grid);
 
     label = gtk_label_new("Style directory : ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);
     gtk_widget_show(label);
     
@@ -221,7 +222,8 @@ void create_mainwindow(void) {
     gtk_widget_show(wid_styledir);
 
     label = gtk_label_new("Style : ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_grid_attach(GTK_GRID(grid), label, 0, 1, 1, 1);
     gtk_widget_show(label);
     
@@ -230,7 +232,8 @@ void create_mainwindow(void) {
     gtk_widget_show(wid_stylename);
 
     label = gtk_label_new("Color : ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_grid_attach(GTK_GRID(grid), label, 0, 2, 1, 1);
     gtk_widget_show(label);
     
@@ -253,7 +256,8 @@ void create_mainwindow(void) {
     gtk_widget_show(hbox);
 
     label = gtk_label_new("Command : ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 1);
     gtk_widget_show(label);
     
@@ -266,7 +270,8 @@ void create_mainwindow(void) {
     gtk_widget_show(hbox);
 
     label = gtk_label_new("Message command : ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 1);
     gtk_widget_show(label);
     
@@ -276,7 +281,8 @@ void create_mainwindow(void) {
 
 
     label = gtk_label_new(" Misc options ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_notebook_append_page(GTK_NOTEBOOK(notebook), left_vbox, label);
     gtk_widget_show(label);
     gtk_widget_show(left_vbox);
@@ -339,7 +345,8 @@ void create_mainwindow(void) {
 
 
     label = gtk_label_new(" Alarms ");
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.5f);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_label_set_yalign(GTK_LABEL(label), 0.5f);
     gtk_notebook_append_page(GTK_NOTEBOOK(notebook), right_vbox, label);
     gtk_widget_show(label);
     gtk_widget_show(right_vbox);
