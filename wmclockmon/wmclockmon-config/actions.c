@@ -88,18 +88,18 @@ void save_datas(void) {
     light_color       = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_color)));
     command           = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_command)));
     msgcmd            = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_msgcmd)));
-    backlight         = GTK_TOGGLE_BUTTON(wid_backlight)->active;
-    switch_authorized = GTK_TOGGLE_BUTTON(wid_blink)->active;
-    h12               = GTK_TOGGLE_BUTTON(wid_h12)->active;
-    if (GTK_TOGGLE_BUTTON(wid_itm)->active)
+    backlight         = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_backlight));
+    switch_authorized = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_blink));
+    h12               = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_h12));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_itm)))
         time_mode = 1;
-    else if (GTK_TOGGLE_BUTTON(wid_bin)->active)
+    else if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_bin)))
         time_mode = 2;
     else
         time_mode = 0;
-    use_locale        = GTK_TOGGLE_BUTTON(wid_locale)->active;
-    showcal           = GTK_TOGGLE_BUTTON(wid_showcal)->active;
-    calalrms          = GTK_TOGGLE_BUTTON(wid_calalrms)->active;
+    use_locale        = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_locale));
+    showcal           = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_showcal));
+    calalrms          = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wid_calalrms));
 
     save_cfgfile();
 }

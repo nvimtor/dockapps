@@ -75,7 +75,7 @@ void edit_dialog(const char *title,
     gtk_signal_connect_object(GTK_OBJECT(bouton), "clicked",
                               GTK_SIGNAL_FUNC(gtk_widget_destroy),
                               GTK_OBJECT(dialog));
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->action_area), 
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
                        bouton, TRUE, TRUE, 0);
     GTK_WIDGET_SET_FLAGS(GTK_WIDGET(bouton), GTK_CAN_DEFAULT);
     gtk_widget_grab_default(GTK_WIDGET(bouton));
@@ -85,16 +85,16 @@ void edit_dialog(const char *title,
     gtk_signal_connect_object(GTK_OBJECT(bouton), "clicked",
                               GTK_SIGNAL_FUNC(gtk_widget_destroy),
                               GTK_OBJECT(dialog));
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->action_area), 
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
                        bouton, TRUE, TRUE, 0);
     GTK_WIDGET_SET_FLAGS(GTK_WIDGET(bouton), GTK_CAN_DEFAULT);
     gtk_widget_show(bouton);
 
     gtk_container_set_border_width(GTK_CONTAINER
-                                   (GTK_DIALOG(dialog)->vbox), 6);
+                                   (gtk_dialog_get_content_area(GTK_DIALOG(dialog))), 6);
 
     hbox = gtk_hbox_new(FALSE, 1);
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), hbox);
+    gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), hbox);
     gtk_widget_show(hbox);
 
     /* STATUS */
@@ -168,7 +168,7 @@ void edit_dialog(const char *title,
     
     /* MESSAGE */
     vbox = gtk_vbox_new(FALSE, 1);
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), vbox);
+    gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), vbox);
     gtk_widget_show(vbox);
 
     label = gtk_label_new("Message");
