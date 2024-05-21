@@ -330,8 +330,8 @@ void create_mainwindow(void) {
                        GTK_SIGNAL_FUNC(quit_app),  NULL);
     gtk_signal_connect(GTK_OBJECT(application), "destroy",
                        GTK_SIGNAL_FUNC(quit_app), "WM destroy");
-        /*-- Taille de la fenêtre --*/
-    gtk_widget_set_usize(GTK_WIDGET(application), WIN_WIDTH, WIN_HEIGHT);
+    /*-- Taille de la fenêtre --*/
+    gtk_widget_set_size_request(GTK_WIDGET(application), WIN_WIDTH, WIN_HEIGHT);
     gtk_widget_realize(application);
 
     /*** Zone principale de placement des widgets***/
