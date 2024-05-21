@@ -309,7 +309,7 @@ dockapp_nextevent_or_timeout(XEvent *event, unsigned long miliseconds)
     if (select(ConnectionNumber(display)+1, &rset, NULL, NULL, &timeout) > 0) {
 	XNextEvent(display, event);
 	if (event->type == ClientMessage) {
-	    if (event->xclient.data.l[0] == delete_win) {
+	    if ((Atom) event->xclient.data.l[0] == delete_win) {
 		XDestroyWindow(display,event->xclient.window);
 		XCloseDisplay(display);
 		exit(0);

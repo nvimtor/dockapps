@@ -518,7 +518,7 @@ static void load_stylepart(const char *filename, StyleDef *opts) {
         if (value[0] == 0) continue;
 
         for (j = 0 ; opts[j].key ; j++) {
-            int length = strlen(opts[j].key);
+            size_t length = strlen(opts[j].key);
             if (strlen(line) <= length) continue;
             if (strncmp(line, opts[j].key, length) == 0) {
                 set_style_value(opts[j], value);

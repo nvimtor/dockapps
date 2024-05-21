@@ -146,17 +146,17 @@ static void to_button(int button) {
 
 
 static void set_buttons_text() {
-    int  year, month, day;
+    guint  year, month, day;
     char datestr[MAXSTRLEN + 1];
 
     bzero(datestr, MAXSTRLEN + 1);
     gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
     month++;
-    snprintf(datestr, MAXSTRLEN, UNIQSTR"%02d", year, month, day);
+    snprintf(datestr, MAXSTRLEN, UNIQSTR"%02u", year, month, day);
     gtk_label_set_text(GTK_LABEL(label_u), datestr);
-    snprintf(datestr, MAXSTRLEN, YEARSTR"%02d", month, day);
+    snprintf(datestr, MAXSTRLEN, YEARSTR"%02u", month, day);
     gtk_label_set_text(GTK_LABEL(label_y), datestr);
-    snprintf(datestr, MAXSTRLEN, MONTSTR"%02d", day);
+    snprintf(datestr, MAXSTRLEN, MONTSTR"%02u", day);
     gtk_label_set_text(GTK_LABEL(label_m), datestr);
 }
 
@@ -238,7 +238,7 @@ static void save_datas() {
 
         if ((stat(dirname, &stat_buf) == 0) && S_ISDIR(stat_buf.st_mode)) {
             FILE *file = fopen(filename, "w");
-            int   year, month, day;
+            guint year, month, day;
 
             if (file) {
 	      tbuf = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(gtk_text_view_get_buffer(GTK_TEXT_VIEW(edit))), &ts, &te, TRUE);
@@ -257,7 +257,7 @@ static void save_datas() {
 
 static void delete_file() {
     char *filename = get_file(daystr);
-    int   year, month, day;
+    guint year, month, day;
 
     unlink(filename);
     gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
@@ -295,7 +295,7 @@ static void mark_days() {
         char startstr_u[9]; /* unique (full date) */
         char startstr_y[9]; /* yearly date */
         char startstr_m[9]; /* monthly date */
-        int  year, month, day;
+        guint year, month, day;
 
         gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
         month++;
