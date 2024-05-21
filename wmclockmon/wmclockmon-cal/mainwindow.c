@@ -412,7 +412,7 @@ void create_mainwindow(void) {
     gtk_signal_connect(GTK_OBJECT(closewindow), "clicked",
             GTK_SIGNAL_FUNC(quit_app), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), closewindow, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(closewindow), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(closewindow), TRUE);
     gtk_widget_grab_default(GTK_WIDGET(closewindow));
     gtk_widget_show(closewindow);
 
@@ -421,21 +421,21 @@ void create_mainwindow(void) {
     gtk_signal_connect(GTK_OBJECT(save), "clicked",
             GTK_SIGNAL_FUNC(save_datas), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), save, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(save), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(save), TRUE);
 
 
     delete = gtk_button_new_with_label(" Delete ");
     gtk_signal_connect(GTK_OBJECT(delete), "clicked",
             GTK_SIGNAL_FUNC(delete_file), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), delete, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(delete), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(delete), TRUE);
 
 
     cancel = gtk_button_new_with_label(" Close ");
     gtk_signal_connect(GTK_OBJECT(cancel), "clicked",
             GTK_SIGNAL_FUNC(toggle_displ), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), cancel, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(cancel), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(cancel), TRUE);
 
 
     /*** AFFICHAGE DE LA FENÊTRE ***/

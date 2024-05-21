@@ -329,7 +329,7 @@ void create_mainwindow() {
     gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
                        GTK_SIGNAL_FUNC(quit_app), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), bouton, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(bouton), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_grab_default(GTK_WIDGET(bouton));
     gtk_widget_show(bouton);
 
@@ -337,7 +337,7 @@ void create_mainwindow() {
     gtk_signal_connect(GTK_OBJECT(bouton), "clicked",
                        GTK_SIGNAL_FUNC(quit_app), NULL);
     gtk_box_pack_start(GTK_BOX(buttons_hbox), bouton, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(bouton), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_show(bouton);
 
 

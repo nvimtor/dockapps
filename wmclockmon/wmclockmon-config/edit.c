@@ -77,7 +77,7 @@ void edit_dialog(const char *title,
                               GTK_OBJECT(dialog));
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
                        bouton, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(bouton), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_grab_default(GTK_WIDGET(bouton));
     gtk_widget_show(bouton);
 
@@ -87,7 +87,7 @@ void edit_dialog(const char *title,
                               GTK_OBJECT(dialog));
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog))),
                        bouton, TRUE, TRUE, 0);
-    GTK_WIDGET_SET_FLAGS(GTK_WIDGET(bouton), GTK_CAN_DEFAULT);
+    gtk_widget_set_can_default(GTK_WIDGET(bouton), TRUE);
     gtk_widget_show(bouton);
 
     gtk_container_set_border_width(GTK_CONTAINER
