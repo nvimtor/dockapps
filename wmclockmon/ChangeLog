@@ -1,3 +1,76 @@
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/edit.c, wmclockmon-config/mainwindow.c:
+	replace deprecated `gtk_misc_set_alignment`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/mainwindow.c: replace deprecated `GtkTable`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/edit.c:
+	replace deprecated `gtk_dialog_get_action_area`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c, wmclockmon-config/edit.c,
+	wmclockmon-config/mainwindow.c: replace deprecated `gtk_[hv]box_new`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* configure.ac: bump GTK dependency to 3.0
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c:
+	remove obsolete `GTK_CALENDAR_WEEK_START_MONDAY`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/edit.c: replace deprecated `GtkCombo`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/actions.c, wmclockmon-config/mainwindow.c,
+	wmclockmon-config/mainwindow.h: replace deprecated `GtkCList`
+
+2024-05-09  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c, wmclockmon-config/actions.c,
+	wmclockmon-config/edit.c, wmclockmon-config/edit.h,
+	wmclockmon-config/mainwindow.c, wmclockmon-config/mainwindow.h:
+	replace deprecated `gtk_signal_*`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c:
+	replace deprecated `gtk_calendar_display_options`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c, wmclockmon-config/mainwindow.c:
+	replace deprecated `gtk_container_border_width`
+
+2024-05-10  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c, wmclockmon-config/mainwindow.c:
+	replace deprecated `gtk_widget_set_usize`
+
+2024-05-08  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c: replace deprecated `gtk_label_get`
+
+2024-05-09  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-cal/mainwindow.c, wmclockmon-config/edit.c:
+	wmclockmon-config/mainwindow.c:
+	replace deprecated `GTK_WIDGET_SET_FLAGS`
+
+2024-05-09  Jeremy Sowden <azazel@debian.org>
+
+	* wmclockmon-config/actions.c, wmclockmon-config/edit.c:
+	replace direct member access with getter calls
 2024-05-08  Jeremy Sowden <azazel@debian.org>
 
 	* wmclockmon-config/edit.c: add missing `const` qualifiers
