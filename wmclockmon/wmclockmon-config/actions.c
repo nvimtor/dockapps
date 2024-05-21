@@ -18,15 +18,13 @@
 #include "edit.h"
 #include "actions.h"
 
-extern int free_light_color;
-extern int free_command;
-
 void quit_app() {
-    if (free_command)
-        FREE(command);
+    FREE(command);
     FREE(config_file);
-    if (free_light_color)
-	FREE(light_color);
+    FREE(light_color);
+    FREE(msgcmd);
+    FREE(style_dir);
+    FREE(style_name);
     free_alrm(&alarms);
     gtk_main_quit();
 }
@@ -79,19 +77,17 @@ void set_values() {
 
 
 void save_datas() {
-    if (free_command) {
-        FREE(command);
-        free_command = 0;
-    }
-    if (free_light_color) {
-        FREE(light_color);
-        free_light_color = 0;
-    }
-    style_dir         = gtk_entry_get_text(GTK_ENTRY(wid_styledir));
-    style_name        = gtk_entry_get_text(GTK_ENTRY(wid_stylename));
-    light_color       = gtk_entry_get_text(GTK_ENTRY(wid_color));
-    command           = gtk_entry_get_text(GTK_ENTRY(wid_command));
-    msgcmd            = gtk_entry_get_text(GTK_ENTRY(wid_msgcmd));
+    FREE(style_dir);
+    FREE(style_name);
+    FREE(light_color);
+    FREE(command);
+    FREE(msgcmd);
+
+    style_dir         = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_styledir)));
+    style_name        = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_stylename)));
+    light_color       = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_color)));
+    command           = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_command)));
+    msgcmd            = xstrdup(gtk_entry_get_text(GTK_ENTRY(wid_msgcmd)));
     backlight         = GTK_TOGGLE_BUTTON(wid_backlight)->active;
     switch_authorized = GTK_TOGGLE_BUTTON(wid_blink)->active;
     h12               = GTK_TOGGLE_BUTTON(wid_h12)->active;

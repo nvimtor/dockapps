@@ -17,8 +17,6 @@
 #include <sys/types.h>
 #include "configfile.h"
 
-int    free_light_color;
-int    free_command;
 int    time_mode;
 char  *msgcmd;
 
@@ -119,7 +117,6 @@ void load_cfgfile() {
             printf("Unable to open configuration file \"%s\".\n", config_file);
         return;
     }
-    free_light_color = free_command = 0;
     while (! feof(file)) {
         memset(line, 0, MAXSTRLEN + 1);
         fgets(line, MAXSTRLEN, file);
@@ -132,15 +129,13 @@ void load_cfgfile() {
 
         if (strncmp(line, "Backlight", 9) == 0)
             backlight = getbool(value);
-        else if (strncmp(line, "Color", 5) == 0) {
+        else if (strncmp(line, "Color", 5) == 0)
             light_color = xstrdup(value);
-            free_light_color = 1;
-        } else if (strncmp(line, "Alarm", 5) == 0)
+        else if (strncmp(line, "Alarm", 5) == 0)
             alrm_add(&alarms, value);
-        else if (strncmp(line, "Command", 7) == 0) {
+        else if (strncmp(line, "Command", 7) == 0)
             command = xstrdup(value);
-            free_command = 1;
-        } else if (strncmp(line, "MessageCmd", 10) == 0)
+        else if (strncmp(line, "MessageCmd", 10) == 0)
             msgcmd = xstrdup(value);
         else if (strncmp(line, "Blink", 5) == 0)
             switch_authorized = getbool(value);
