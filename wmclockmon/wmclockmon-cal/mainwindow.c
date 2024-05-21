@@ -135,7 +135,8 @@ static void toggle_buttons(int button) {
 
 
 static void to_button(int button) {
-    if (dateb == 0) dateb == button;
+    if (dateb == 0)
+	    dateb = button;
     if (button != dateb) {
         int b = dateb;
         dateb = button;
