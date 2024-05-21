@@ -149,7 +149,6 @@ static void set_buttons_text(void) {
     guint  year, month, day;
     char datestr[MAXSTRLEN + 1];
 
-    bzero(datestr, MAXSTRLEN + 1);
     gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
     month++;
     snprintf(datestr, MAXSTRLEN, UNIQSTR"%02u", year, month, day);
