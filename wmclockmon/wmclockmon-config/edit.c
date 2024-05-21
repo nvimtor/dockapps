@@ -19,13 +19,13 @@ static GtkWidget *wid_date;
 static GtkWidget *wid_mesg;
 
 void set_data(GtkWidget *widget UNUSED, GtkWidget *data UNUSED) {
-    char *wstat = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(wid_status)->entry));
-    char *wtime = gtk_entry_get_text(GTK_ENTRY(wid_time));
-    char *wdate = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(wid_date)->entry));
-    char *wmesg = gtk_entry_get_text(GTK_ENTRY(wid_mesg));
-    int   has_day = (strcmp(wdate, "ALL") != 0);
-    int   has_msg = (strcmp(wdate, "") != 0);
-    int   len = strlen(wstat) + 1 + strlen(wtime) + 1;
+    const char *wstat = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(wid_status)->entry));
+    const char *wtime = gtk_entry_get_text(GTK_ENTRY(wid_time));
+    const char *wdate = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(wid_date)->entry));
+    const char *wmesg = gtk_entry_get_text(GTK_ENTRY(wid_mesg));
+    int         has_day = (strcmp(wdate, "ALL") != 0);
+    int         has_msg = (strcmp(wdate, "") != 0);
+    int         len = strlen(wstat) + 1 + strlen(wtime) + 1;
    
     len += has_day ? strlen(wdate) + 1 : 0;
     len += has_msg ? strlen(wmesg) + 1 : 0;
