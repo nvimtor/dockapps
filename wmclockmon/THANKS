@@ -1,4 +1,8 @@
-For creating WMMemMon and WMCPULoad for which this is based:
+For creating wmclockmon itself:
+Thomas Nemeth <tnemeth@free.fr>
+
+For creating WMMemMon and WMCPULoad on which it is based:
 Seiichi SATO <ssato@sh.rim.or.jp>
-For creating wmmemload for which this is based:
+
+For creating wmmemload on which it is based:
 Mark Staggs <me@markstaggs.net>

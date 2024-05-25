@@ -1,5 +1,7 @@
-Main Author:
-Thomas Nemeth <tnemeth@free.fr>
+wmclockmon is currently maintained by the Window Maker Development Team
+<wmaker-dev@googlegroups.com>.
+
+It was created by Thomas Nemeth <tnemeth@free.fr>.
 
 Based largely on work on WMMemMon, WMCPULoad and wmmemload done by:
 Seiichi SATO <ssato@sh.rim.or.jp>
