@@ -8,6 +8,9 @@ INSTALLING THE DOCKAPP :
 
     use ./configure --help for more informations on options.
 
+    The GTK development packages are required to build wmclockmon-cal and
+    wmclockmon-config.
+
 
 2. COMPILE THE SOURCES :
 
