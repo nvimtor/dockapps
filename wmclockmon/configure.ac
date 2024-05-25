@@ -40,9 +40,11 @@ dnl =========
 AC_ARG_ENABLE([debug],
               [AS_HELP_STRING([--enable-debug], [turn on debugging [default=no]])])
 AS_IF([test "$enable_debug" = yes], [
-  debug_CFLAGS="-Wall -g -ansi -pedantic"
+  debug_CPPFLAGS="-D_XOPEN_SOURCE=700 -DGTK_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_DEPRECATED"
+  debug_CFLAGS="-Wall -Wextra -std=c11 -pedantic"
   AC_DEFINE([DEBUG], [1], [use debug code])
 ])
+AC_SUBST([debug_CPPFLAGS])
 AC_SUBST([debug_CFLAGS])
 
 

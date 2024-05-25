@@ -4,6 +4,7 @@ else
 AM_CPPFLAGS = -DUNUSED=""
 endif
 
-AM_CFLAGS = $(debug_CFLAGS)
+AM_CPPFLAGS += $(debug_CPPFLAGS)
+AM_CFLAGS    = $(debug_CFLAGS)
 
 INSTALL_PROGRAM += $(SETGID_FLAGS)
