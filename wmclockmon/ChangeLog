@@ -1,3 +1,25 @@
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+	* configure.ac: bump version to 1.0.0
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+	* configure.ac: update maintainer address
+
+2024-05-15  Jeremy Sowden <jeremy@azazel.net>
+
+	* AUTHORS, THANKS: add wmaker-dev to AUTHORS and Thomas Nemeth to THANKS
+
+2024-05-22  Jeremy Sowden <jeremy@azazel.net>
+
+        * BUGS, INSTALL: remove old BUGS file and add a note to the INSTALL file
+        about the requirement for the GTK development files
+
+2024-05-12  Jeremy Sowden <azazel@debian.org>
+
+	* Makefile.common.am, configure.ac:
+	update debug flags to reflect what I've been using
+
 2024-05-10  Jeremy Sowden <azazel@debian.org>
 
 	* wmclockmon-config/edit.c, wmclockmon-config/mainwindow.c:
