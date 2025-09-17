@@ -408,7 +408,7 @@ void setupX(void) {
 	XSizeHints shints;
 	XGCValues gcv;
 	XColor color;
-	XRectangle bound = { 0, 0, 72, 72 };
+	XRectangle bound = { 0, 0, 116, 116 };
 
 
 	screen = DefaultScreen(dpy);
@@ -443,7 +443,7 @@ void setupX(void) {
 	gcv.graphics_exposures = False;
 	gcv.foreground = tx_pixel[HIGH_INTENSITY];
 	gcv.background = darkgrey_pixel;
-	gcv.font = XLoadFont(dpy, "5x8");
+	gcv.font = XLoadFont(dpy, "9x15");
 	graphics_context = XCreateGC(dpy, root_window, (GCFont|GCGraphicsExposures|GCForeground|GCBackground), &gcv);
 	black_pixel = BlackPixel(dpy, screen);
 	white_pixel = WhitePixel(dpy, screen);
@@ -462,10 +462,10 @@ void setupX(void) {
 	XSetWMHints(dpy,main_window,&hints);
 	XSetWMProtocols(dpy, main_window, &delete_atom, 1);
 
-	shints.min_width = 80;
-	shints.min_height = 80;
-	shints.max_width = 80;
-	shints.max_height = 80;
+	shints.min_width = 128;
+	shints.min_height = 128;
+	shints.max_width = 128;
+	shints.max_height = 128;
 	shints.flags = PMinSize | PMaxSize;
 	XSetWMNormalHints(dpy, main_window, &shints);
 
@@ -481,7 +481,7 @@ void setupX(void) {
 void createWin(Window *win) {
 	XClassHint classHint;
 	XSetWindowAttributes windowAttrib;
-	*win = XCreateSimpleWindow(dpy, root_window, 10, 10, 80, 80, 0, 0, 0);
+	*win = XCreateSimpleWindow(dpy, root_window, 10, 10, 128, 128, 0, 0, 0);
 	classHint.res_name = "wmnet";
 	classHint.res_class = "WMNET";
 	windowAttrib.background_pixmap = ParentRelative;
@@ -493,7 +493,7 @@ void createWin(Window *win) {
 
 /* Handles Expose events, repaints the window */
 void redraw(XExposeEvent *ee) {
-        static XRectangle cliprect = { 4, 61, 72, 9 };
+        static XRectangle cliprect = { 4, 105, 116, 9 };
 	XSetForeground(dpy, graphics_context, darkgrey_pixel);
 /*	if (wmaker_present == False) XFillRectangle(dpy, *visible_window, graphics_context, 0, 0, 64, 64); */
 	XFillRectangle(dpy, *visible_window, graphics_context, GRAPHBOX_X, GRAPHBOX_Y, GRAPHBOX_WIDTH, GRAPHBOX_HEIGHT);
