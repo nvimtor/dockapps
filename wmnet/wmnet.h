@@ -15,13 +15,13 @@
 
 #define TOPBOX_X             4
 #define TOPBOX_Y             4
-#define TOPBOX_WIDTH                          56
+#define TOPBOX_WIDTH                          72
 #define TOPBOX_HEIGHT                         11
 
 /* Graphing area extents */
 #define GRAPHBOX_X           4
 #define GRAPHBOX_Y           15
-#define GRAPHBOX_WIDTH       56
+#define GRAPHBOX_WIDTH       72
 #define GRAPHBOX_HEIGHT      graphbox_height
 
 #define GRAPHBOX_X_RIGHT     (GRAPHBOX_X + GRAPHBOX_WIDTH - 1)
@@ -79,7 +79,7 @@ unsigned long long int totalbytes_in, totalbytes_out, lastbytes_in, lastbytes_ou
 unsigned long long int totalpackets_in, totalpackets_out, lastpackets_in, lastpackets_out;
 unsigned int diffbytes_in, diffbytes_out;
 unsigned int delayTime = 100000, displayDelay = 55000, maxRate = 120000;
-unsigned int out_rule = 2, in_rule = 1, graphbox_height = 44;  /* number of rule in /proc/net/ip_acct to use */
+unsigned int out_rule = 2, in_rule = 1, graphbox_height = 54;  /* number of rule in /proc/net/ip_acct to use */
 char *in_rule_string = NULL, *out_rule_string = NULL, *device=NULL;
 Bool current_tx = False, current_rx = False, rx, tx, logscale = False;
 parser_func stat_gather;

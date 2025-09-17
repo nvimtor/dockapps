@@ -408,7 +408,7 @@ void setupX(void) {
 	XSizeHints shints;
 	XGCValues gcv;
 	XColor color;
-	XRectangle bound = { 0, 0, 56, 56 };
+	XRectangle bound = { 0, 0, 72, 72 };
 
 
 	screen = DefaultScreen(dpy);
@@ -462,10 +462,10 @@ void setupX(void) {
 	XSetWMHints(dpy,main_window,&hints);
 	XSetWMProtocols(dpy, main_window, &delete_atom, 1);
 
-	shints.min_width = 64;
-	shints.min_height = 64;
-	shints.max_width = 64;
-	shints.max_height = 64;
+	shints.min_width = 80;
+	shints.min_height = 80;
+	shints.max_width = 80;
+	shints.max_height = 80;
 	shints.flags = PMinSize | PMaxSize;
 	XSetWMNormalHints(dpy, main_window, &shints);
 
@@ -481,7 +481,7 @@ void setupX(void) {
 void createWin(Window *win) {
 	XClassHint classHint;
 	XSetWindowAttributes windowAttrib;
-	*win = XCreateSimpleWindow(dpy, root_window, 10, 10, 64, 64, 0, 0, 0);
+	*win = XCreateSimpleWindow(dpy, root_window, 10, 10, 80, 80, 0, 0, 0);
 	classHint.res_name = "wmnet";
 	classHint.res_class = "WMNET";
 	windowAttrib.background_pixmap = ParentRelative;
@@ -493,7 +493,7 @@ void createWin(Window *win) {
 
 /* Handles Expose events, repaints the window */
 void redraw(XExposeEvent *ee) {
-        static XRectangle cliprect = { 4, 51, 56, 9 };
+        static XRectangle cliprect = { 4, 61, 72, 9 };
 	XSetForeground(dpy, graphics_context, darkgrey_pixel);
 /*	if (wmaker_present == False) XFillRectangle(dpy, *visible_window, graphics_context, 0, 0, 64, 64); */
 	XFillRectangle(dpy, *visible_window, graphics_context, GRAPHBOX_X, GRAPHBOX_Y, GRAPHBOX_WIDTH, GRAPHBOX_HEIGHT);
@@ -621,7 +621,7 @@ int updateSpeedometer(int rxRate, int txRate) {
 	double rate;
 	char astring[10];
 	unsigned long color;
-	static XRectangle cliprect = { 4, 5, 37, 8 };
+	static XRectangle cliprect = { 4, 5, 53, 8 };
 	static int rxRate_last = 0 , txRate_last = 0;
 	static Bool clear = True, collectandreturn = True;
 
