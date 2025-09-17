@@ -13,8 +13,8 @@
  */
 
 
-#define TOPBOX_X             4
-#define TOPBOX_Y             4
+#define TOPBOX_X             6
+#define TOPBOX_Y             6
 #define TOPBOX_WIDTH                          116
 #define TOPBOX_HEIGHT                         11
 

@@ -493,7 +493,7 @@ void createWin(Window *win) {
 
 /* Handles Expose events, repaints the window */
 void redraw(XExposeEvent *ee) {
-        static XRectangle cliprect = { 4, 105, 116, 9 };
+        static XRectangle cliprect = { 6, 105, 116, 9 };
 	XSetForeground(dpy, graphics_context, darkgrey_pixel);
 /*	if (wmaker_present == False) XFillRectangle(dpy, *visible_window, graphics_context, 0, 0, 64, 64); */
 	XFillRectangle(dpy, *visible_window, graphics_context, GRAPHBOX_X, GRAPHBOX_Y, GRAPHBOX_WIDTH, GRAPHBOX_HEIGHT);
@@ -508,7 +508,7 @@ void redraw(XExposeEvent *ee) {
 		XFillRectangle(dpy, *visible_window, graphics_context, LABEL_X, LABEL_Y, LABEL_WIDTH, LABEL_HEIGHT);
 		XSetClipRectangles(dpy, graphics_context, 0, 0, &cliprect, 1, Unsorted);
 		XSetForeground(dpy, graphics_context, labelfg_pixel);
-		XDrawString(dpy, *visible_window, graphics_context, 5, 58, label, strlen(label));
+		XDrawString(dpy, *visible_window, graphics_context, 7, 122, label, strlen(label));
 		XSetClipMask(dpy, graphics_context, None);
 	}
 
@@ -621,7 +621,7 @@ int updateSpeedometer(int rxRate, int txRate) {
 	double rate;
 	char astring[10];
 	unsigned long color;
-	static XRectangle cliprect = { 4, 5, 53, 8 };
+	static XRectangle cliprect = { 6, 5, 110, 8 };
 	static int rxRate_last = 0 , txRate_last = 0;
 	static Bool clear = True, collectandreturn = True;
 
@@ -668,7 +668,7 @@ int updateSpeedometer(int rxRate, int txRate) {
 
 	XSetForeground(dpy, graphics_context, color);
 	XSetClipRectangles(dpy, graphics_context, 0, 0, &cliprect, 1, Unsorted);
-	XDrawString(dpy, *visible_window, graphics_context, 4, 13, astring, strlen(astring));
+	XDrawString(dpy, *visible_window, graphics_context, 6, 13, astring, strlen(astring));
 	XSetClipMask(dpy, graphics_context, None);
 	clear = False;
 	return(0);
